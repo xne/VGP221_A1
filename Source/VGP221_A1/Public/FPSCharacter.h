@@ -19,4 +19,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION()
+	void MoveForward(float value);
+
+	UFUNCTION()
+	void MoveRight(float value);
 };
