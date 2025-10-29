@@ -25,4 +25,7 @@ public:
 
 	UFUNCTION()
 	void MoveRight(float value);
+
+	UFUNCTION()
+	void Fire();
 };

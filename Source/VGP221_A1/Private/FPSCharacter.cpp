@@ -26,6 +26,8 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAxis("LookVertical", this, &AFPSCharacter::AddControllerPitchInput);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AFPSCharacter::Jump);
+
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFPSCharacter::Fire);
 }
 
 void AFPSCharacter::MoveForward(float value)
@@ -38,4 +40,8 @@ void AFPSCharacter::MoveRight(float value)
 {
 	FVector Direction = GetActorRightVector();
 	AddMovementInput(Direction, value);
+}
+
+void AFPSCharacter::Fire()
+{
 }
