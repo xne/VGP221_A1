@@ -3,6 +3,14 @@
 AFPSCharacter::AFPSCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	if (!FPSCameraComponent)
+	{
+		FPSCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
+		FPSCameraComponent->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
+		FPSCameraComponent->SetRelativeLocation(FVector(0.f, 0.f, 50.f + BaseEyeHeight));
+		FPSCameraComponent->bUsePawnControlRotation = true;
+	}
 }
 
 void AFPSCharacter::BeginPlay()
