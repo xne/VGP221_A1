@@ -4,7 +4,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/Character.h"
-#include "FPSProjectile.h"
+#include "Projectiles/FPSProjectile.h"
 #include "FPSCharacter.generated.h"
 
 UCLASS()

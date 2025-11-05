@@ -1,4 +1,4 @@
-#include "FPSGameMode.h"
+#include "GameModes/FPSGameMode.h"
 
 void AFPSGameMode::StartPlay()
 {

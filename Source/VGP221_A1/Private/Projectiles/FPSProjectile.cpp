@@ -1,4 +1,4 @@
-#include "FPSProjectile.h"
+#include "Projectiles/FPSProjectile.h"
 
 AFPSProjectile::AFPSProjectile()
 {
