@@ -11,6 +11,11 @@ AFPSCharacter::AFPSCharacter()
 		FPSCameraComponent->SetRelativeLocation(FVector(0.f, 0.f, 50.f + BaseEyeHeight));
 		FPSCameraComponent->bUsePawnControlRotation = true;
 	}
+
+	if (!ProjectileClass)
+	{
+		ProjectileClass = AFPSProjectile::StaticClass();
+	}
 }
 
 void AFPSCharacter::BeginPlay()
@@ -52,4 +57,25 @@ void AFPSCharacter::MoveRight(float value)
 
 void AFPSCharacter::Fire()
 {
+	if (!ProjectileClass)
+		return;
+
+	FVector CameraLocation;
+	FRotator CameraRotation;
+	GetActorEyesViewPoint(CameraLocation, CameraRotation);
+
+	UWorld* World = GetWorld();
+	if (!World)
+		return;
+
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = this;
+	SpawnParams.Instigator = GetInstigator();
+
+	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, CameraLocation, CameraRotation, SpawnParams);
+	if (!Projectile)
+		return;
+
+	FVector FireDirection = CameraRotation.Vector();
+	Projectile->Fire(FireDirection);
 }

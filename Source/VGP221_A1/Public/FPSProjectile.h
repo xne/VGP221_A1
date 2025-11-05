@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "FPSProjectile.generated.h"
 
 UCLASS()
@@ -24,4 +25,16 @@ public:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Projectile")
 	UStaticMeshComponent* ProjectileMeshComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float BulletSpeed = 1000;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "Movement")
+	UProjectileMovementComponent* ProjectileMovementComponent;
+
+	UFUNCTION()
+	void Fire(const FVector& Direction);
+
+	UFUNCTION()
+	void OnComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };

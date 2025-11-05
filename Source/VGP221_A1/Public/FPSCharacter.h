@@ -4,6 +4,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/Character.h"
+#include "FPSProjectile.h"
 #include "FPSCharacter.generated.h"
 
 UCLASS()
@@ -24,6 +25,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* FPSCameraComponent;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class AFPSProjectile> ProjectileClass;
 
 	UFUNCTION()
 	void MoveForward(float value);

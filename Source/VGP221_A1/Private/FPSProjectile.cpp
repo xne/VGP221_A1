@@ -8,6 +8,7 @@ AFPSProjectile::AFPSProjectile()
 	{
 		CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
 		CollisionComponent->InitSphereRadius(15.f);
+		CollisionComponent->OnComponentHit.AddDynamic(this, &AFPSProjectile::OnComponentHit);
 		RootComponent = CollisionComponent;
 	}
 
@@ -24,6 +25,15 @@ AFPSProjectile::AFPSProjectile()
 		ProjectileMeshComponent->SetRelativeScale3D(FVector(0.3f));
 		ProjectileMeshComponent->SetupAttachment(RootComponent);
 	}
+
+	if (!ProjectileMovementComponent)
+	{
+		ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
+		ProjectileMovementComponent->SetUpdatedComponent(CollisionComponent);
+		ProjectileMovementComponent->InitialSpeed = BulletSpeed;
+		ProjectileMovementComponent->MaxSpeed = BulletSpeed;
+		ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
+	}
 }
 
 void AFPSProjectile::BeginPlay()
@@ -34,4 +44,18 @@ void AFPSProjectile::BeginPlay()
 void AFPSProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void AFPSProjectile::Fire(const FVector& Direction)
+{
+	ProjectileMovementComponent->Velocity = Direction * ProjectileMovementComponent->InitialSpeed;
+}
+
+void AFPSProjectile::OnComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (OtherActor != this && OtherComponent->IsSimulatingPhysics())
+	{
+		OtherComponent->AddImpulseAtLocation(ProjectileMovementComponent->Velocity * 100.f, Hit.ImpactPoint);
+	}
+	Destroy();
 }
