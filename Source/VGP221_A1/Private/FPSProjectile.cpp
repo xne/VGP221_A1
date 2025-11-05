@@ -34,6 +34,8 @@ AFPSProjectile::AFPSProjectile()
 		ProjectileMovementComponent->MaxSpeed = BulletSpeed;
 		ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
 	}
+
+	InitialLifeSpan = 3.f;
 }
 
 void AFPSProjectile::BeginPlay()
