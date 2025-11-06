@@ -8,6 +8,7 @@ AFPSProjectile::AFPSProjectile()
 	{
 		CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
 		CollisionComponent->InitSphereRadius(15.f);
+		CollisionComponent->SetCollisionProfileName(TEXT("Projectile"));
 		CollisionComponent->OnComponentHit.AddDynamic(this, &AFPSProjectile::OnComponentHit);
 		RootComponent = CollisionComponent;
 	}
@@ -23,6 +24,7 @@ AFPSProjectile::AFPSProjectile()
 		}
 
 		ProjectileMeshComponent->SetRelativeScale3D(FVector(0.3f));
+		ProjectileMeshComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
 		ProjectileMeshComponent->SetupAttachment(RootComponent);
 	}
 
@@ -55,9 +57,13 @@ void AFPSProjectile::Fire(const FVector& Direction)
 
 void AFPSProjectile::OnComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
 {
-	if (OtherActor != this && OtherComponent->IsSimulatingPhysics())
+	if (OtherActor == this)
+		return;
+
+	if (OtherComponent->IsSimulatingPhysics())
 	{
 		OtherComponent->AddImpulseAtLocation(ProjectileMovementComponent->Velocity * 100.f, Hit.ImpactPoint);
 	}
+
 	Destroy();
 }
