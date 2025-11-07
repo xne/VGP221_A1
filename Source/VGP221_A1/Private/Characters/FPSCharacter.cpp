@@ -16,6 +16,8 @@ AFPSCharacter::AFPSCharacter()
 	{
 		ProjectileClass = AFPSProjectile::StaticClass();
 	}
+
+	GetCharacterMovement()->SetWalkableFloorAngle(60.f);
 }
 
 void AFPSCharacter::BeginPlay()
