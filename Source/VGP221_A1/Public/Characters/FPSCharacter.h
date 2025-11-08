@@ -30,6 +30,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class AFPSProjectile> ProjectileClass;
 
+	UPROPERTY(EditAnywhere)
+	FVector ProjectileSpawnOffset = FVector(0.f, 100.f, -32.f);
+
 	UFUNCTION()
 	void MoveForward(float value);
 

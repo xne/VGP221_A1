@@ -66,6 +66,8 @@ void AFPSCharacter::Fire()
 	FRotator CameraRotation;
 	GetActorEyesViewPoint(CameraLocation, CameraRotation);
 
+	FVector ProjectileSpawnLocation = CameraLocation + CameraRotation.RotateVector(ProjectileSpawnOffset);
+
 	UWorld* World = GetWorld();
 	if (!World)
 		return;
@@ -74,7 +76,7 @@ void AFPSCharacter::Fire()
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = GetInstigator();
 
-	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, CameraLocation, CameraRotation, SpawnParams);
+	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, ProjectileSpawnLocation, CameraRotation, SpawnParams);
 	if (!Projectile)
 		return;
 
