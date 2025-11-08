@@ -72,3 +72,9 @@ Plugins/**/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Marlitia Outpost assets by Hivemind
+Content/__ExternalActors__/Marlitia_Outpost/*
+Content/__ExternalActors__/ThirdPerson/*
+Content/__ExternalObjects__/Marlitia_Outpost/*
+Content/Marlitia_Outpost/*
