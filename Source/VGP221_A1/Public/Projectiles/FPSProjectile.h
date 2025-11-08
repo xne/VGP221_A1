@@ -27,7 +27,7 @@ public:
 	UStaticMeshComponent* ProjectileMeshComponent;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-	float BulletSpeed = 1000;
+	float BulletSpeed = 2000;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Movement")
 	UProjectileMovementComponent* ProjectileMovementComponent;

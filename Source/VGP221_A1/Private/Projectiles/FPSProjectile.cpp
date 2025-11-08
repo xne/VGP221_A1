@@ -37,7 +37,7 @@ AFPSProjectile::AFPSProjectile()
 		ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
 	}
 
-	InitialLifeSpan = 3.f;
+	InitialLifeSpan = 1.5f;
 }
 
 void AFPSProjectile::BeginPlay()
