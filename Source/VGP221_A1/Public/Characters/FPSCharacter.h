@@ -21,8 +21,6 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	bool LineTrace(float Distance, FHitResult& OutHitResult);
-
 public:
 	virtual void Tick(float DeltaTime) override;
 
@@ -48,6 +46,9 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Character")
 	void OnFire(FVector SpawnLocation, FRotator CameraRotation);
+
+	UFUNCTION(BlueprintCallable)
+	bool LineTrace(float Distance, FHitResult& OutHitResult);
 
 	UFUNCTION()
 	void Interact();
