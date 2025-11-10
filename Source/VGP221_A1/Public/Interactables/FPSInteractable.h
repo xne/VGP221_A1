@@ -1,27 +1,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
 #include "Projectiles/FPSProjectile.h"
-#include "Interactable.generated.h"
+#include "FPSInteractable.generated.h"
 
 UCLASS()
-class VGP221_A1_API AInteractable : public AActor
+class VGP221_A1_API AFPSInteractable : public AActor
 {
 	GENERATED_BODY()
 	
 public:
-	AInteractable();
+	AFPSInteractable();
 
 protected:
 	virtual void BeginPlay() override;
 
 public:
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY(VisibleDefaultsOnly, Category = "Interactable")
-	UBoxComponent* CollisionComponent;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Interactable")
 	UStaticMeshComponent* InteractableMeshComponent;
