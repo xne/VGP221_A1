@@ -35,5 +35,10 @@ void AFPSInteractable::OnComponentHit(UPrimitiveComponent* HitComponent, AActor*
 		return;
 
 	if (OtherActor->IsA(AFPSProjectile::StaticClass()))
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "Projectile hit an interactable!");
+		OnInteract();
+}
+
+void AFPSInteractable::OnInteract_Implementation()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "Projectile hit an interactable!");
 }
