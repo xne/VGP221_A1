@@ -59,18 +59,24 @@ void AFPSCharacter::MoveRight(float value)
 	AddMovementInput(Direction, value);
 }
 
-void AFPSCharacter::Fire()
+void AFPSCharacter::GetFireLocation(FVector& Location, FRotator& Rotation)
 {
 	FVector CameraLocation;
-	FRotator CameraRotation;
-	GetActorEyesViewPoint(CameraLocation, CameraRotation);
+	GetActorEyesViewPoint(CameraLocation, Rotation);
 
-	FVector SpawnLocation = CameraLocation + CameraRotation.RotateVector(FireOffset);
-	
-	OnFire(SpawnLocation, CameraRotation);
+	Location = CameraLocation + Rotation.RotateVector(FireOffset);
 }
 
-void AFPSCharacter::OnFire_Implementation(FVector SpawnLocation, FRotator CameraRotation)
+void AFPSCharacter::Fire()
+{
+	FVector Location;
+	FRotator CameraRotation;
+	GetFireLocation(Location, CameraRotation);
+
+	OnFire(Location, CameraRotation);
+}
+
+void AFPSCharacter::OnFire_Implementation(FVector Location, FRotator Rotation)
 {
 	if (!ProjectileClass)
 		return;
@@ -83,15 +89,15 @@ void AFPSCharacter::OnFire_Implementation(FVector SpawnLocation, FRotator Camera
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = GetInstigator();
 
-	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, SpawnLocation, CameraRotation, SpawnParams);
+	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, Location, Rotation, SpawnParams);
 	if (!Projectile)
 		return;
 
-	FVector FireDirection = CameraRotation.Vector();
+	FVector FireDirection = Rotation.Vector();
 	Projectile->Fire(FireDirection);
 }
 
-bool AFPSCharacter::LineTrace(float Distance, FHitResult& OutHitResult)
+void AFPSCharacter::LineTrace(float Distance, bool& Hit, FHitResult& OutHitResult)
 {
 	FVector CameraLocation;
 	FRotator CameraRotation;
@@ -105,21 +111,22 @@ bool AFPSCharacter::LineTrace(float Distance, FHitResult& OutHitResult)
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.AddIgnoredActor(this);
 
-	bool bHit = GetWorld()->LineTraceSingleByChannel(
+	Hit = GetWorld()->LineTraceSingleByChannel(
 		OutHitResult,
 		Start,
 		End,
 		ECC_Visibility,
 		CollisionParams
 	);
-
-	return bHit;
 }
 
 void AFPSCharacter::Interact()
 {
-	FHitResult HitResult;
-	if (LineTrace(100.f, HitResult))
-		if (auto FPSInteractable = Cast<AFPSInteractable>(HitResult.GetActor()))
+	bool Hit;
+	FHitResult Result;
+	LineTrace(100.f, Hit, Result);
+
+	if (Hit)
+		if (auto FPSInteractable = Cast<AFPSInteractable>(Result.GetActor()))
 			FPSInteractable->OnInteract();
 }

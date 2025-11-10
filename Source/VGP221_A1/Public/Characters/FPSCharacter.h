@@ -44,11 +44,14 @@ public:
 	UFUNCTION()
 	void Fire();
 
+	UFUNCTION(BlueprintPure)
+	void GetFireLocation(FVector& Location, FRotator& Rotation);
+
 	UFUNCTION(BlueprintNativeEvent, Category = "Character")
-	void OnFire(FVector SpawnLocation, FRotator CameraRotation);
+	void OnFire(FVector Location, FRotator Rotation);
 
 	UFUNCTION(BlueprintCallable)
-	bool LineTrace(float Distance, FHitResult& OutHitResult);
+	void LineTrace(float Distance, bool& Hit, FHitResult& Result);
 
 	UFUNCTION()
 	void Interact();
