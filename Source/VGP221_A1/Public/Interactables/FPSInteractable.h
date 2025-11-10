@@ -22,9 +22,6 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, Category = "Interactable")
 	UStaticMeshComponent* InteractableMeshComponent;
 
-	UFUNCTION()
-	void OnComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
-
 	UFUNCTION(BlueprintNativeEvent, Category = "Interactable")
 	void OnInteract();
 };

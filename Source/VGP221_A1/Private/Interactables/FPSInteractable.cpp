@@ -14,7 +14,6 @@ AFPSInteractable::AFPSInteractable()
 			InteractableMeshComponent->SetStaticMesh(InteractableMeshAsset.Object);
 		}
 
-		InteractableMeshComponent->OnComponentHit.AddDynamic(this, &AFPSInteractable::OnComponentHit);
 		RootComponent = InteractableMeshComponent;
 	}
 }
@@ -29,16 +28,6 @@ void AFPSInteractable::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AFPSInteractable::OnComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
-{
-	if (OtherActor == this)
-		return;
-
-	if (OtherActor->IsA(AFPSProjectile::StaticClass()))
-		OnInteract();
-}
-
 void AFPSInteractable::OnInteract_Implementation()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "Projectile hit an interactable!");
 }

@@ -43,6 +43,8 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AFPSCharacter::Jump);
 
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFPSCharacter::Fire);
+
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AFPSCharacter::Interact);
 }
 
 void AFPSCharacter::MoveForward(float value)
@@ -87,4 +89,37 @@ void AFPSCharacter::OnFire_Implementation(FVector SpawnLocation, FRotator Camera
 
 	FVector FireDirection = CameraRotation.Vector();
 	Projectile->Fire(FireDirection);
+}
+
+bool AFPSCharacter::LineTrace(float Distance, FHitResult& OutHitResult)
+{
+	FVector CameraLocation;
+	FRotator CameraRotation;
+	GetActorEyesViewPoint(CameraLocation, CameraRotation);
+
+	FVector Direction = CameraRotation.Vector();
+
+	FVector Start = CameraLocation;
+	FVector End = Start + (Direction * Distance);
+
+	FCollisionQueryParams CollisionParams;
+	CollisionParams.AddIgnoredActor(this);
+
+	bool bHit = GetWorld()->LineTraceSingleByChannel(
+		OutHitResult,
+		Start,
+		End,
+		ECC_Visibility,
+		CollisionParams
+	);
+
+	return bHit;
+}
+
+void AFPSCharacter::Interact()
+{
+	FHitResult HitResult;
+	if (LineTrace(100.f, HitResult))
+		if (auto FPSInteractable = Cast<AFPSInteractable>(HitResult.GetActor()))
+			FPSInteractable->OnInteract();
 }

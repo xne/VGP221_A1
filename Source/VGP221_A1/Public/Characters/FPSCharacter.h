@@ -3,8 +3,10 @@
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Engine/World.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Interactables/FPSInteractable.h"
 #include "Projectiles/FPSProjectile.h"
 #include "FPSCharacter.generated.h"
 
@@ -18,6 +20,8 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+
+	bool LineTrace(float Distance, FHitResult& OutHitResult);
 
 public:
 	virtual void Tick(float DeltaTime) override;
@@ -44,4 +48,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Character")
 	void OnFire(FVector SpawnLocation, FRotator CameraRotation);
+
+	UFUNCTION()
+	void Interact();
 };
