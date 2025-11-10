@@ -4,15 +4,6 @@ AFPSProjectile::AFPSProjectile()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	if (!CollisionComponent)
-	{
-		CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
-		CollisionComponent->InitSphereRadius(15.f);
-		CollisionComponent->SetCollisionProfileName(TEXT("Projectile"));
-		CollisionComponent->OnComponentHit.AddDynamic(this, &AFPSProjectile::OnComponentHit);
-		RootComponent = CollisionComponent;
-	}
-
 	if (!ProjectileMeshComponent)
 	{
 		ProjectileMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ProjectileMeshComponent"));
@@ -23,15 +14,14 @@ AFPSProjectile::AFPSProjectile()
 			ProjectileMeshComponent->SetStaticMesh(ProjectileMeshAsset.Object);
 		}
 
-		ProjectileMeshComponent->SetRelativeScale3D(FVector(0.3f));
-		ProjectileMeshComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
-		ProjectileMeshComponent->SetupAttachment(RootComponent);
+		ProjectileMeshComponent->OnComponentHit.AddDynamic(this, &AFPSProjectile::OnComponentHit);
+		RootComponent = ProjectileMeshComponent;
 	}
 
 	if (!ProjectileMovementComponent)
 	{
 		ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
-		ProjectileMovementComponent->SetUpdatedComponent(CollisionComponent);
+		ProjectileMovementComponent->SetUpdatedComponent(ProjectileMeshComponent);
 		ProjectileMovementComponent->InitialSpeed = BulletSpeed;
 		ProjectileMovementComponent->MaxSpeed = BulletSpeed;
 		ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
@@ -59,11 +49,6 @@ void AFPSProjectile::OnComponentHit(UPrimitiveComponent* HitComponent, AActor* O
 {
 	if (OtherActor == this)
 		return;
-
-	if (OtherComponent->IsSimulatingPhysics())
-	{
-		OtherComponent->AddImpulseAtLocation(ProjectileMovementComponent->Velocity * 100.f, Hit.ImpactPoint);
-	}
 
 	Destroy();
 }

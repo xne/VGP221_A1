@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "FPSProjectile.generated.h"
@@ -19,9 +18,6 @@ protected:
 
 public:	
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY(VisibleDefaultsOnly, Category = "Projectile")
-	USphereComponent* CollisionComponent;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Projectile")
 	UStaticMeshComponent* ProjectileMeshComponent;
