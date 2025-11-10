@@ -59,14 +59,19 @@ void AFPSCharacter::MoveRight(float value)
 
 void AFPSCharacter::Fire()
 {
-	if (!ProjectileClass)
-		return;
-
 	FVector CameraLocation;
 	FRotator CameraRotation;
 	GetActorEyesViewPoint(CameraLocation, CameraRotation);
 
-	FVector ProjectileSpawnLocation = CameraLocation + CameraRotation.RotateVector(ProjectileSpawnOffset);
+	FVector SpawnLocation = CameraLocation + CameraRotation.RotateVector(FireOffset);
+	
+	OnFire(SpawnLocation, CameraRotation);
+}
+
+void AFPSCharacter::OnFire_Implementation(FVector SpawnLocation, FRotator CameraRotation)
+{
+	if (!ProjectileClass)
+		return;
 
 	UWorld* World = GetWorld();
 	if (!World)
@@ -76,7 +81,7 @@ void AFPSCharacter::Fire()
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = GetInstigator();
 
-	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, ProjectileSpawnLocation, CameraRotation, SpawnParams);
+	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, SpawnLocation, CameraRotation, SpawnParams);
 	if (!Projectile)
 		return;
 

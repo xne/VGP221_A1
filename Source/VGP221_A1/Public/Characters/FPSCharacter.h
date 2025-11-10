@@ -31,7 +31,7 @@ public:
 	TSubclassOf<class AFPSProjectile> ProjectileClass;
 
 	UPROPERTY(EditAnywhere)
-	FVector ProjectileSpawnOffset = FVector(0.f, 100.f, -32.f);
+	FVector FireOffset = FVector(0.f, 100.f, -32.f);
 
 	UFUNCTION()
 	void MoveForward(float value);
@@ -41,4 +41,7 @@ public:
 
 	UFUNCTION()
 	void Fire();
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Character")
+	void OnFire(FVector SpawnLocation, FRotator CameraRotation);
 };
