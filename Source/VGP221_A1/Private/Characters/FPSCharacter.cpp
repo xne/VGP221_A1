@@ -59,24 +59,20 @@ void AFPSCharacter::MoveRight(float value)
 	AddMovementInput(Direction, value);
 }
 
-void AFPSCharacter::GetFireLocation(FVector& Location, FRotator& Rotation)
+void AFPSCharacter::GetFireLocation(FVector& FireLocation, FRotator& FireRotation)
 {
 	FVector CameraLocation;
-	GetActorEyesViewPoint(CameraLocation, Rotation);
+	GetActorEyesViewPoint(CameraLocation, FireRotation);
 
-	Location = CameraLocation + Rotation.RotateVector(FireOffset);
+	FireLocation = CameraLocation + FireRotation.RotateVector(FireOffset);
 }
 
 void AFPSCharacter::Fire()
 {
-	FVector Location;
-	FRotator CameraRotation;
-	GetFireLocation(Location, CameraRotation);
-
-	OnFire(Location, CameraRotation);
+	OnFire();
 }
 
-void AFPSCharacter::OnFire_Implementation(FVector Location, FRotator Rotation)
+void AFPSCharacter::OnFire_Implementation()
 {
 	if (!ProjectileClass)
 		return;
@@ -85,15 +81,19 @@ void AFPSCharacter::OnFire_Implementation(FVector Location, FRotator Rotation)
 	if (!World)
 		return;
 
+	FVector FireLocation;
+	FRotator FireRotation;
+	GetFireLocation(FireLocation, FireRotation);
+
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = GetInstigator();
 
-	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, Location, Rotation, SpawnParams);
+	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, FireLocation, FireRotation, SpawnParams);
 	if (!Projectile)
 		return;
 
-	FVector FireDirection = Rotation.Vector();
+	FVector FireDirection = FireRotation.Vector();
 	Projectile->Fire(FireDirection);
 }
 

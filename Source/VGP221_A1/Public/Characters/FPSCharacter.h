@@ -45,10 +45,10 @@ public:
 	void Fire();
 
 	UFUNCTION(BlueprintPure)
-	void GetFireLocation(FVector& Location, FRotator& Rotation);
+	void GetFireLocation(FVector& FireLocation, FRotator& FireRotation);
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Character")
-	void OnFire(FVector Location, FRotator Rotation);
+	void OnFire();
 
 	UFUNCTION(BlueprintCallable)
 	void LineTrace(float Distance, bool& Hit, FHitResult& Result);
