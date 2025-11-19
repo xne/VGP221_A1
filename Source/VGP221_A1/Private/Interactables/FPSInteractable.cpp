@@ -30,4 +30,5 @@ void AFPSInteractable::Tick(float DeltaTime)
 
 void AFPSInteractable::OnInteract_Implementation()
 {
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "Interact");
 }
