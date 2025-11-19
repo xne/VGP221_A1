@@ -47,16 +47,16 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AFPSCharacter::Interact);
 }
 
-void AFPSCharacter::MoveForward(float value)
+void AFPSCharacter::MoveForward(float Value)
 {
 	FVector Direction = GetActorForwardVector();
-	AddMovementInput(Direction, value);
+	AddMovementInput(Direction, Value);
 }
 
-void AFPSCharacter::MoveRight(float value)
+void AFPSCharacter::MoveRight(float Value)
 {
 	FVector Direction = GetActorRightVector();
-	AddMovementInput(Direction, value);
+	AddMovementInput(Direction, Value);
 }
 
 void AFPSCharacter::GetFireLocation(FVector& FireLocation, FRotator& FireRotation)

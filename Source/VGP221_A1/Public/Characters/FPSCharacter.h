@@ -36,10 +36,10 @@ public:
 	FVector FireOffset = FVector(0.f, 100.f, -32.f);
 
 	UFUNCTION()
-	void MoveForward(float value);
+	void MoveForward(float Value);
 
 	UFUNCTION()
-	void MoveRight(float value);
+	void MoveRight(float Value);
 
 	UFUNCTION()
 	void Fire();
