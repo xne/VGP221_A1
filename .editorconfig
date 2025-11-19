@@ -1,6 +1,6 @@
 [*.{cpp,h}]
 
-# Naming convention rules (note: currently need to be ordered from more to less specific)
+# Naming convention rules
 
 cpp_naming_rule.aactor_prefixed.symbols                    = aactor_class
 cpp_naming_rule.aactor_prefixed.style                      = aactor_style
@@ -26,7 +26,7 @@ cpp_naming_rule.templates_prefixed.style                   = unreal_engine_templ
 cpp_naming_rule.general_names.symbols                      = all_symbols
 cpp_naming_rule.general_names.style                        = unreal_engine_default
 
-# Naming convention symbols         
+# Naming convention symbols
 
 cpp_naming_symbols.aactor_class.applicable_kinds           = class
 cpp_naming_symbols.aactor_class.applicable_type            = AActor

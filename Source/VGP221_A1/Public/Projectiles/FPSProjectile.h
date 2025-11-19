@@ -9,14 +9,14 @@ UCLASS()
 class VGP221_A1_API AFPSProjectile : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	AFPSProjectile();
 
 protected:
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Projectile")

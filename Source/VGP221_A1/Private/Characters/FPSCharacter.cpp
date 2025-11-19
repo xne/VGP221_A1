@@ -111,13 +111,7 @@ void AFPSCharacter::LineTrace(float Distance, bool& Hit, FHitResult& OutHitResul
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.AddIgnoredActor(this);
 
-	Hit = GetWorld()->LineTraceSingleByChannel(
-		OutHitResult,
-		Start,
-		End,
-		ECC_Visibility,
-		CollisionParams
-	);
+	Hit = GetWorld()->LineTraceSingleByChannel(OutHitResult, Start, End, ECC_Visibility, CollisionParams);
 }
 
 void AFPSCharacter::Interact()

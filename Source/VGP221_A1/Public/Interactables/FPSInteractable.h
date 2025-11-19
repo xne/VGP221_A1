@@ -9,7 +9,7 @@ UCLASS()
 class VGP221_A1_API AFPSInteractable : public AActor
 {
 	GENERATED_BODY()
-	
+
 public:
 	AFPSInteractable();
 
