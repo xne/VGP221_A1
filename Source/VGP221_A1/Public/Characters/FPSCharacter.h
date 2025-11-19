@@ -8,6 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Interactables/FPSInteractable.h"
 #include "Projectiles/FPSProjectile.h"
+#include "Weapons/FPSWeapon.h"
 #include "FPSCharacter.generated.h"
 
 UCLASS()

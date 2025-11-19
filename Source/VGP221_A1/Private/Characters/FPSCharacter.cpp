@@ -121,6 +121,17 @@ void AFPSCharacter::Interact()
 	LineTrace(100.f, Hit, Result);
 
 	if (Hit)
+	{
 		if (auto FPSInteractable = Cast<AFPSInteractable>(Result.GetActor()))
+		{
 			FPSInteractable->OnInteract();
+			return;
+		}
+
+		if (auto FPSWeapon = Cast<AFPSWeapon>(Result.GetActor()))
+		{
+			FPSWeapon->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+			return;
+		}
+	}
 }

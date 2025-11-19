@@ -17,4 +17,10 @@ protected:
 
 public:
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Weapon")
+	void OnFire();
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Weapon")
+	void OnZoom(float Value);
 };
