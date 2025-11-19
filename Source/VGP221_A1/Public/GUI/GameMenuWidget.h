@@ -25,4 +25,10 @@ public:
 
 	UFUNCTION()
 	void UpdateHealthBar(float HealthPercent);
+
+	UFUNCTION()
+	void UpdateTimeText(int Time);
+
+	UFUNCTION()
+	void UpdateScoreText(int Score);
 };
