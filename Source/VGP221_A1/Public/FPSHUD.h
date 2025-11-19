@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
+#include "GUI/GameMenuWidget.h"
 #include "FPSHUD.generated.h"
 
 UCLASS()
@@ -13,4 +14,11 @@ public:
 	virtual void BeginPlay() override;
 
 	virtual void DrawHUD() override;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UGameMenuWidget> FirstGameMenuClass;
+	UGameMenuWidget* GameMenuWidget;
+
+	void PushGameMenu(TSubclassOf<UGameMenuWidget> GameMenuClass);
+	void PopGameMenu();
 };
