@@ -118,7 +118,7 @@ void AFPSCharacter::Interact()
 {
 	bool Hit;
 	FHitResult Result;
-	LineTrace(100.f, Hit, Result);
+	LineTrace(InteractDistance, Hit, Result);
 
 	if (Hit)
 	{

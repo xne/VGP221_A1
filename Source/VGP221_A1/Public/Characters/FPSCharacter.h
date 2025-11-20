@@ -36,6 +36,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	FVector FireOffset = FVector(0.f, 100.f, -32.f);
 
+	UPROPERTY(EditAnywhere)
+	float InteractDistance = 200.f;
+
 	UFUNCTION()
 	void MoveForward(float Value);
 
