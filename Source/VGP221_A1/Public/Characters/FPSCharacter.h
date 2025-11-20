@@ -31,10 +31,11 @@ public:
 	UCameraComponent* FPSCameraComponent;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<class AFPSProjectile> ProjectileClass;
+	TSubclassOf<class AFPSWeapon> FirstWeaponClass;
+	AFPSWeapon* Weapon;
 
 	UPROPERTY(EditAnywhere)
-	FVector FireOffset = FVector(0.f, 100.f, -32.f);
+	FVector WeaponLocation = FVector(0.f, 100.f, -32.f);
 
 	UPROPERTY(EditAnywhere)
 	float InteractDistance = 200.f;
@@ -48,11 +49,8 @@ public:
 	UFUNCTION()
 	void Fire();
 
-	UFUNCTION(BlueprintPure)
-	void GetFireLocation(FVector& FireLocation, FRotator& FireRotation);
-
-	UFUNCTION(BlueprintNativeEvent, Category = "Character")
-	void OnFire();
+	UFUNCTION()
+	void Zoom(float Value);
 
 	UFUNCTION(BlueprintCallable)
 	void LineTrace(float Distance, bool& Hit, FHitResult& Result);

@@ -12,11 +12,6 @@ AFPSCharacter::AFPSCharacter()
 		FPSCameraComponent->bUsePawnControlRotation = true;
 	}
 
-	if (!ProjectileClass)
-	{
-		ProjectileClass = AFPSProjectile::StaticClass();
-	}
-
 	GetCharacterMovement()->SetWalkableFloorAngle(60.f);
 }
 
@@ -43,6 +38,7 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AFPSCharacter::Jump);
 
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFPSCharacter::Fire);
+	PlayerInputComponent->BindAxis("Zoom", this, &AFPSCharacter::Zoom);
 
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AFPSCharacter::Interact);
 }
@@ -59,42 +55,16 @@ void AFPSCharacter::MoveRight(float Value)
 	AddMovementInput(Direction, Value);
 }
 
-void AFPSCharacter::GetFireLocation(FVector& FireLocation, FRotator& FireRotation)
-{
-	FVector CameraLocation;
-	GetActorEyesViewPoint(CameraLocation, FireRotation);
-
-	FireLocation = CameraLocation + FireRotation.RotateVector(FireOffset);
-}
-
 void AFPSCharacter::Fire()
 {
-	OnFire();
+	if (Weapon)
+		Weapon->OnFire();
 }
 
-void AFPSCharacter::OnFire_Implementation()
+void AFPSCharacter::Zoom(float Value)
 {
-	if (!ProjectileClass)
-		return;
-
-	UWorld* World = GetWorld();
-	if (!World)
-		return;
-
-	FVector FireLocation;
-	FRotator FireRotation;
-	GetFireLocation(FireLocation, FireRotation);
-
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.Owner = this;
-	SpawnParams.Instigator = GetInstigator();
-
-	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, FireLocation, FireRotation, SpawnParams);
-	if (!Projectile)
-		return;
-
-	FVector FireDirection = FireRotation.Vector();
-	Projectile->Fire(FireDirection);
+	if (Weapon && !FMath::IsNearlyZero(Value, KINDA_SMALL_NUMBER))
+		Weapon->OnZoom(Value);
 }
 
 void AFPSCharacter::LineTrace(float Distance, bool& Hit, FHitResult& OutHitResult)
@@ -130,7 +100,11 @@ void AFPSCharacter::Interact()
 
 		if (auto FPSWeapon = Cast<AFPSWeapon>(Result.GetActor()))
 		{
-			FPSWeapon->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+			if (Weapon)
+				Weapon->Detach();
+
+			Weapon = FPSWeapon;
+			Weapon->Attach(GetRootComponent(), WeaponLocation);
 			return;
 		}
 	}

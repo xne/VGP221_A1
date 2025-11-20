@@ -18,6 +18,15 @@ protected:
 public:
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(VisibleDefaultsOnly)
+	UStaticMeshComponent* WeaponMeshComponent;
+
+	UFUNCTION()
+	void Attach(USceneComponent* Component, FVector RelativeLocation);
+
+	UFUNCTION()
+	void Detach();
+
 	UFUNCTION(BlueprintNativeEvent, Category = "Weapon")
 	void OnFire();
 

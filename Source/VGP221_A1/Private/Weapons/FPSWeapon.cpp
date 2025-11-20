@@ -3,6 +3,21 @@
 AFPSWeapon::AFPSWeapon()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	if (!WeaponMeshComponent)
+	{
+		WeaponMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WeaponMeshComponent"));
+
+		static ConstructorHelpers::FObjectFinder<UStaticMesh> WeaponMeshAsset(TEXT("/Engine/BasicShapes/Cube"));
+		if (WeaponMeshAsset.Succeeded())
+		{
+			WeaponMeshComponent->SetStaticMesh(WeaponMeshAsset.Object);
+		}
+
+		WeaponMeshComponent->SetCollisionProfileName(TEXT("PhysicsActor"));
+		WeaponMeshComponent->SetSimulatePhysics(true);
+		RootComponent = WeaponMeshComponent;
+	}
 }
 
 void AFPSWeapon::BeginPlay()
@@ -13,6 +28,21 @@ void AFPSWeapon::BeginPlay()
 void AFPSWeapon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void AFPSWeapon::Attach(USceneComponent* Component, FVector RelativeLocation)
+{
+	WeaponMeshComponent->SetSimulatePhysics(false);
+	WeaponMeshComponent->SetCollisionProfileName(TEXT("NoCollision"));
+	WeaponMeshComponent->AttachToComponent(Component, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	WeaponMeshComponent->SetRelativeLocation(RelativeLocation);
+}
+
+void AFPSWeapon::Detach()
+{
+	WeaponMeshComponent->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+	WeaponMeshComponent->SetCollisionProfileName(TEXT("PhysicsActor"));
+	WeaponMeshComponent->SetSimulatePhysics(true);
 }
 
 void AFPSWeapon::OnFire_Implementation()
