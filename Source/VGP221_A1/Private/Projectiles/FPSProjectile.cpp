@@ -30,16 +30,6 @@ AFPSProjectile::AFPSProjectile()
 	InitialLifeSpan = 1.5f;
 }
 
-void AFPSProjectile::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-void AFPSProjectile::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 void AFPSProjectile::Fire(const FVector& Direction)
 {
 	ProjectileMovementComponent->Velocity = Direction * ProjectileMovementComponent->InitialSpeed;

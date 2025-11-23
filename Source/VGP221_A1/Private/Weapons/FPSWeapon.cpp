@@ -20,16 +20,6 @@ AFPSWeapon::AFPSWeapon()
 	}
 }
 
-void AFPSWeapon::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-void AFPSWeapon::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 void AFPSWeapon::Attach(USceneComponent* Component, FVector RelativeLocation)
 {
 	WeaponMeshComponent->SetSimulatePhysics(false);

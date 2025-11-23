@@ -13,12 +13,6 @@ class VGP221_A1_API AFPSPhysicsObject : public AActor
 public:
 	AFPSPhysicsObject();
 
-protected:
-	virtual void BeginPlay() override;
-
-public:
-	virtual void Tick(float DeltaTime) override;
-
 	UPROPERTY(VisibleDefaultsOnly, Category = "PhysicsObject")
 	UStaticMeshComponent* PhysicsObjectMeshComponent;
 

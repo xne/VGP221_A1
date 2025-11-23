@@ -15,16 +15,6 @@ AFPSCharacter::AFPSCharacter()
 	GetCharacterMovement()->SetWalkableFloorAngle(60.f);
 }
 
-void AFPSCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-void AFPSCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);

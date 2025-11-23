@@ -18,16 +18,6 @@ AFPSInteractable::AFPSInteractable()
 	}
 }
 
-void AFPSInteractable::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-void AFPSInteractable::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 void AFPSInteractable::OnInteract_Implementation()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "Interact");

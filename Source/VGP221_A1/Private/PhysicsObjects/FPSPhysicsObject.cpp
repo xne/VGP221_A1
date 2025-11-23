@@ -20,16 +20,6 @@ AFPSPhysicsObject::AFPSPhysicsObject()
 	}
 }
 
-void AFPSPhysicsObject::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-void AFPSPhysicsObject::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 void AFPSPhysicsObject::OnComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
 {
 	if (OtherActor == this)

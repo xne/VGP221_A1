@@ -13,12 +13,6 @@ class VGP221_A1_API AFPSInteractable : public AActor
 public:
 	AFPSInteractable();
 
-protected:
-	virtual void BeginPlay() override;
-
-public:
-	virtual void Tick(float DeltaTime) override;
-
 	UPROPERTY(VisibleDefaultsOnly, Category = "Interactable")
 	UStaticMeshComponent* InteractableMeshComponent;
 
