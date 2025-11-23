@@ -31,7 +31,7 @@ public:
 	AFPSWeapon* Weapon;
 
 	UPROPERTY(EditAnywhere)
-	FVector WeaponLocation = FVector(0.f, 100.f, -32.f);
+	FVector WeaponLocation = FVector(0.f, 100.f, -64.f);
 
 	UPROPERTY(EditAnywhere)
 	float InteractDistance = 200.f;

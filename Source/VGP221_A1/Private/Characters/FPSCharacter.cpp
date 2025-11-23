@@ -88,6 +88,6 @@ void AFPSCharacter::Interact()
 			Weapon->Detach();
 
 		Weapon = FPSWeapon;
-		Weapon->Attach(GetRootComponent(), WeaponLocation);
+		Weapon->Attach(FPSCameraComponent, WeaponLocation);
 	}
 }
