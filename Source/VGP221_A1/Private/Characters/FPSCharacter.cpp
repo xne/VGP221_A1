@@ -73,22 +73,21 @@ void AFPSCharacter::Interact()
 	FHitResult Result;
 	auto bHit = GetWorld()->LineTraceSingleByChannel(Result, Start, End, ECC_Visibility, CollisionParams);
 
-	if (bHit)
+	if (!bHit)
+		return;
+
+	if (auto FPSInteractable = Cast<AFPSInteractable>(Result.GetActor()))
 	{
-		if (auto FPSInteractable = Cast<AFPSInteractable>(Result.GetActor()))
-		{
-			FPSInteractable->OnInteract();
-			return;
-		}
+		FPSInteractable->OnInteract();
+		return;
+	}
 
-		if (auto FPSWeapon = Cast<AFPSWeapon>(Result.GetActor()))
-		{
-			if (Weapon)
-				Weapon->Detach();
+	if (auto FPSWeapon = Cast<AFPSWeapon>(Result.GetActor()))
+	{
+		if (Weapon)
+			Weapon->Detach();
 
-			Weapon = FPSWeapon;
-			Weapon->Attach(GetRootComponent(), WeaponLocation);
-			return;
-		}
+		Weapon = FPSWeapon;
+		Weapon->Attach(GetRootComponent(), WeaponLocation);
 	}
 }
