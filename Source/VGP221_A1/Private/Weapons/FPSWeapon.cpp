@@ -20,6 +20,18 @@ AFPSWeapon::AFPSWeapon()
 	}
 }
 
+void AFPSWeapon::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (!WeaponMeshComponent->IsSimulatingPhysics())
+	{
+		FVector Start = GetActorLocation();
+		FVector End = Start + GetActorForwardVector() * 1000.f;
+		DrawDebugLine(GetWorld(), Start, End, FColor::Red);
+	}
+}
+
 void AFPSWeapon::Attach(USceneComponent* Component, FVector RelativeLocation)
 {
 	WeaponMeshComponent->SetSimulatePhysics(false);
