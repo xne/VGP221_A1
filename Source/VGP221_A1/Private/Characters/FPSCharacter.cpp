@@ -67,30 +67,23 @@ void AFPSCharacter::Zoom(float Value)
 		Weapon->OnZoom(Value);
 }
 
-void AFPSCharacter::LineTrace(float Distance, bool& Hit, FHitResult& OutHitResult)
+void AFPSCharacter::Interact()
 {
 	FVector CameraLocation;
 	FRotator CameraRotation;
 	GetActorEyesViewPoint(CameraLocation, CameraRotation);
 
 	FVector Direction = CameraRotation.Vector();
-
 	FVector Start = CameraLocation;
-	FVector End = Start + (Direction * Distance);
+	FVector End = Start + (Direction * InteractDistance);
 
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.AddIgnoredActor(this);
 
-	Hit = GetWorld()->LineTraceSingleByChannel(OutHitResult, Start, End, ECC_Visibility, CollisionParams);
-}
-
-void AFPSCharacter::Interact()
-{
-	bool Hit;
 	FHitResult Result;
-	LineTrace(InteractDistance, Hit, Result);
+	auto bHit = GetWorld()->LineTraceSingleByChannel(Result, Start, End, ECC_Visibility, CollisionParams);
 
-	if (Hit)
+	if (bHit)
 	{
 		if (auto FPSInteractable = Cast<AFPSInteractable>(Result.GetActor()))
 		{

@@ -52,9 +52,6 @@ public:
 	UFUNCTION()
 	void Zoom(float Value);
 
-	UFUNCTION(BlueprintCallable)
-	void LineTrace(float Distance, bool& Hit, FHitResult& Result);
-
 	UFUNCTION()
 	void Interact();
 };
