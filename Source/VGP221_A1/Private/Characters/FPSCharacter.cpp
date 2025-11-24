@@ -2,8 +2,6 @@
 
 AFPSCharacter::AFPSCharacter()
 {
-	PrimaryActorTick.bCanEverTick = true;
-
 	if (!FPSCameraComponent)
 	{
 		FPSCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
