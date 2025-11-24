@@ -16,7 +16,7 @@ public:
 	virtual void DrawHUD() override;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UMainMenuWidget> FirstMainMenuClass;
+	TSubclassOf<UMainMenuWidget> FirstMainMenuClass = UMainMenuWidget::StaticClass();
 	UMainMenuWidget* MainMenuWidget;
 
 	void PushMainMenu(TSubclassOf<UMainMenuWidget> MainMenuClass);
