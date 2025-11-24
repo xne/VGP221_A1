@@ -50,7 +50,7 @@ void AGravityGun::OnZoom_Implementation(float Value)
 bool AGravityGun::Grab()
 {
 	if (bGrabActive)
-		return;
+		return false;
 
 	FVector Direction = GetActorRotation().Vector();
 
@@ -73,6 +73,7 @@ bool AGravityGun::Grab()
 
 	PhysicsHandleComponent->GrabComponentAtLocationWithRotation(GrabbedComponent, NAME_None, GrabLocation, GetActorRotation());
 	bGrabActive = true;
+	OnGrab();
 	return true;
 }
 
@@ -83,4 +84,5 @@ void AGravityGun::Release()
 
 	PhysicsHandleComponent->ReleaseComponent();
 	bGrabActive = false;
+	OnRelease();
 }

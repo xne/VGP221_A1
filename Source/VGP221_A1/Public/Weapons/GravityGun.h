@@ -36,8 +36,14 @@ public:
 	UFUNCTION()
 	bool Grab();
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Weapon")
+	void OnGrab();
+
 	UFUNCTION()
 	void Release();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Weapon")
+	void OnRelease();
 
 private:
 	bool bGrabActive;
