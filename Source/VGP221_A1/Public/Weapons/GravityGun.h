@@ -30,6 +30,18 @@ public:
 	UPROPERTY(EditAnywhere)
 	float ZoomSpeed = 10.f;
 
+	UPROPERTY(VisibleAnywhere)
+	bool bGrabActive;
+
+	UPROPERTY(VisibleAnywhere)
+	UPrimitiveComponent* GrabbedComponent;
+
+	UPROPERTY(VisibleAnywhere)
+	FVector GrabLocation;
+
+	UPROPERTY(VisibleAnywhere)
+	float GrabDistance;
+
 	virtual void OnFire_Implementation() override;
 	virtual void OnZoom_Implementation(float Value) override;
 
@@ -44,10 +56,4 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Weapon")
 	void OnRelease();
-
-private:
-	bool bGrabActive;
-	UPrimitiveComponent* GrabbedComponent;
-	float GrabDistance;
-	FVector GrabLocation;
 };
