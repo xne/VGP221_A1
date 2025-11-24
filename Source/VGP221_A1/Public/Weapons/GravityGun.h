@@ -25,7 +25,7 @@ public:
 	float GrabMaxDistance = 1000.f;
 
 	UPROPERTY(EditAnywhere)
-	float GrabMinDistance = 34.f;
+	float GrabMinDistance = 150.f;
 
 	UPROPERTY(EditAnywhere)
 	float ZoomSpeed = 10.f;
