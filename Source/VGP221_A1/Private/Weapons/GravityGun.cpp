@@ -12,6 +12,9 @@ void AGravityGun::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (!GrabbedComponent)
+		bGrabActive = false;
+
 	if (!bGrabActive)
 		return;
 
@@ -46,6 +49,9 @@ void AGravityGun::OnZoom_Implementation(float Value)
 
 bool AGravityGun::Grab()
 {
+	if (bGrabActive)
+		return;
+
 	FVector Direction = GetActorRotation().Vector();
 
 	FVector Start = GetActorLocation();
@@ -72,6 +78,9 @@ bool AGravityGun::Grab()
 
 void AGravityGun::Release()
 {
+	if (!bGrabActive)
+		return;
+
 	PhysicsHandleComponent->ReleaseComponent();
 	bGrabActive = false;
 }
