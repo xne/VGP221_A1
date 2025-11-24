@@ -19,7 +19,7 @@ void AGravityGun::Tick(float DeltaTime)
 		return;
 
 	FVector ComponentLocation = GrabbedComponent->GetComponentLocation();
-	float Margin = GrabbedComponent->GetLocalBounds().SphereRadius + 100.f;
+	float Margin = GrabbedComponent->GetLocalBounds().SphereRadius + GrabMargin;
 
 	if (FVector::Dist(ComponentLocation, GrabLocation) > Margin)
 	{

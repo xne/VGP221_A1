@@ -28,6 +28,9 @@ public:
 	float GrabMinDistance = 150.f;
 
 	UPROPERTY(EditAnywhere)
+	float GrabMargin = 100.f;
+
+	UPROPERTY(EditAnywhere)
 	float ZoomSpeed = 10.f;
 
 	virtual void OnFire_Implementation() override;
