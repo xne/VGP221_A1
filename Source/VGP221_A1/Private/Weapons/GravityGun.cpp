@@ -66,7 +66,7 @@ bool AGravityGun::Grab()
 
 	GrabbedComponent = Result.GetComponent();
 	GrabLocation = Result.ImpactPoint;
-	GrabDistance = Result.Distance;
+	GrabDistance = FMath::Clamp(Result.Distance, GrabMinDistance, GrabMaxDistance);
 
 	if (!GrabbedComponent->IsSimulatingPhysics())
 		return false;
