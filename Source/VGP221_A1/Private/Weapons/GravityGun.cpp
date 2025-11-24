@@ -86,3 +86,23 @@ void AGravityGun::Release()
 	bGrabActive = false;
 	OnRelease();
 }
+
+bool AGravityGun::GetGrabActive() const
+{
+	return bGrabActive;
+}
+
+UPrimitiveComponent* AGravityGun::GetGrabbedComponent()
+{
+	return GrabbedComponent;
+}
+
+FVector AGravityGun::GetGrabLocation() const
+{
+	return GrabLocation;
+}
+
+float AGravityGun::GetGrabDistance() const
+{
+	return GrabDistance;
+}
