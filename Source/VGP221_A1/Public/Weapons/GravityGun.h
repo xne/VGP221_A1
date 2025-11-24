@@ -28,9 +28,6 @@ public:
 	float GrabMinDistance = 150.f;
 
 	UPROPERTY(EditAnywhere)
-	float GrabMargin = 100.f;
-
-	UPROPERTY(EditAnywhere)
 	float ZoomSpeed = 10.f;
 
 	virtual void OnFire_Implementation() override;
@@ -60,9 +57,13 @@ public:
 	UFUNCTION(BlueprintPure)
 	float GetGrabDistance() const;
 
+	UFUNCTION(BlueprintPure)
+	float GetGrabRadius();
+
 private:
 	bool bGrabActive;
 	UPrimitiveComponent* GrabbedComponent;
 	FVector GrabLocation;
 	float GrabDistance;
+	float GrabRadius;
 };

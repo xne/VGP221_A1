@@ -19,9 +19,7 @@ void AGravityGun::Tick(float DeltaTime)
 		return;
 
 	FVector ComponentLocation = GrabbedComponent->GetComponentLocation();
-	float Margin = GrabbedComponent->GetLocalBounds().SphereRadius + GrabMargin;
-
-	if (FVector::Dist(ComponentLocation, GrabLocation) > Margin)
+	if (FVector::Dist(ComponentLocation, GrabLocation) > GrabRadius)
 	{
 		Release();
 		return;
@@ -68,6 +66,10 @@ bool AGravityGun::Grab()
 	GrabLocation = Result.ImpactPoint;
 	GrabDistance = FMath::Clamp(Result.Distance, GrabMinDistance, GrabMaxDistance);
 
+	FTransform Transform = GrabbedComponent->GetComponentTransform();
+	// Scale by the square root of 2 to circumscribe, rather than inscribe, the grabbed component
+	GrabRadius = GrabbedComponent->CalcBounds(Transform).SphereRadius * FMath::Sqrt(2.f);
+
 	if (!GrabbedComponent->IsSimulatingPhysics())
 		return false;
 
@@ -105,4 +107,9 @@ FVector AGravityGun::GetGrabLocation() const
 float AGravityGun::GetGrabDistance() const
 {
 	return GrabDistance;
+}
+
+float AGravityGun::GetGrabRadius()
+{
+	return GrabRadius;
 }
