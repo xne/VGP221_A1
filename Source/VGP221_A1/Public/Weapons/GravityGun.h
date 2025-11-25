@@ -22,10 +22,10 @@ public:
 	UPhysicsHandleComponent* PhysicsHandleComponent;
 
 	UPROPERTY(EditAnywhere)
-	float GrabMaxDistance = 1000.f;
+	float MaxDistance = 1000.f;
 
 	UPROPERTY(EditAnywhere)
-	float GrabMinDistance = 150.f;
+	float MinDistance = 150.f;
 
 	UPROPERTY(EditAnywhere)
 	float ZoomSpeed = 10.f;
