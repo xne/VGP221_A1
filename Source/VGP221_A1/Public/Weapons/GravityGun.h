@@ -49,7 +49,7 @@ public:
 	bool GetGrabActive() const;
 
 	UFUNCTION(BlueprintPure)
-	UPrimitiveComponent* GetGrabbedComponent();
+	UPrimitiveComponent* GetGrabbedComponent() const;
 
 	UFUNCTION(BlueprintPure)
 	FVector GetGrabLocation() const;
@@ -58,7 +58,7 @@ public:
 	float GetGrabDistance() const;
 
 	UFUNCTION(BlueprintPure)
-	float GetGrabRadius();
+	float GetGrabRadius() const;
 
 private:
 	bool bGrabActive;

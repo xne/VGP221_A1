@@ -94,7 +94,7 @@ bool AGravityGun::GetGrabActive() const
 	return bGrabActive;
 }
 
-UPrimitiveComponent* AGravityGun::GetGrabbedComponent()
+UPrimitiveComponent* AGravityGun::GetGrabbedComponent() const
 {
 	return GrabbedComponent;
 }
@@ -109,7 +109,7 @@ float AGravityGun::GetGrabDistance() const
 	return GrabDistance;
 }
 
-float AGravityGun::GetGrabRadius()
+float AGravityGun::GetGrabRadius() const
 {
 	return GrabRadius;
 }
