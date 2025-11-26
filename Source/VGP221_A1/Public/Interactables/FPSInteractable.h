@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Projectiles/FPSProjectile.h"
 #include "FPSInteractable.generated.h"
 
 UCLASS()
