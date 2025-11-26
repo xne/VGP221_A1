@@ -7,11 +7,6 @@ void AFPSHUD::BeginPlay()
 	PushGameMenu(FirstGameMenuClass);
 }
 
-void AFPSHUD::DrawHUD()
-{
-	Super::DrawHUD();
-}
-
 void AFPSHUD::PushGameMenu(TSubclassOf<UGameMenuWidget> GameMenuClass)
 {
 	GameMenuWidget = CreateWidget<UGameMenuWidget>(GetWorld(), GameMenuClass);

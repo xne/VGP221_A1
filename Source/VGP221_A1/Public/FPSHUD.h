@@ -13,8 +13,6 @@ class VGP221_A1_API AFPSHUD : public AHUD
 public:
 	virtual void BeginPlay() override;
 
-	virtual void DrawHUD() override;
-
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UGameMenuWidget> FirstGameMenuClass = UGameMenuWidget::StaticClass();
 	UGameMenuWidget* GameMenuWidget;

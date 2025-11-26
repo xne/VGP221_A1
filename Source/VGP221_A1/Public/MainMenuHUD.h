@@ -13,8 +13,6 @@ class VGP221_A1_API AMainMenuHUD : public AHUD
 public:
 	virtual void BeginPlay() override;
 
-	virtual void DrawHUD() override;
-
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UMainMenuWidget> FirstMainMenuClass = UMainMenuWidget::StaticClass();
 	UMainMenuWidget* MainMenuWidget;

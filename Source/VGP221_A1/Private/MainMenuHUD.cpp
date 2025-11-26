@@ -7,11 +7,6 @@ void AMainMenuHUD::BeginPlay()
 	PushMainMenu(FirstMainMenuClass);
 }
 
-void AMainMenuHUD::DrawHUD()
-{
-	Super::DrawHUD();
-}
-
 void AMainMenuHUD::PushMainMenu(TSubclassOf<UMainMenuWidget> MainMenuClass)
 {
 	MainMenuWidget = CreateWidget<UMainMenuWidget>(GetWorld(), MainMenuClass);
