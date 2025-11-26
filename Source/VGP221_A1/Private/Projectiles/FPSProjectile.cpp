@@ -2,8 +2,6 @@
 
 AFPSProjectile::AFPSProjectile()
 {
-	PrimaryActorTick.bCanEverTick = true;
-
 	if (!ProjectileMeshComponent)
 	{
 		ProjectileMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ProjectileMeshComponent"));

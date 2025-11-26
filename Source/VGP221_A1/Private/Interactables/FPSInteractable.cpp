@@ -2,8 +2,6 @@
 
 AFPSInteractable::AFPSInteractable()
 {
-	PrimaryActorTick.bCanEverTick = true;
-
 	if (!InteractableMeshComponent)
 	{
 		InteractableMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("InteractableMeshComponent"));
