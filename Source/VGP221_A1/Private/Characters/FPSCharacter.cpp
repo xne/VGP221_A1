@@ -10,6 +10,12 @@ AFPSCharacter::AFPSCharacter()
 		FPSCameraComponent->bUsePawnControlRotation = true;
 	}
 
+	if (FirstWeaponClass)
+	{
+		Weapon = GetWorld()->SpawnActor<AFPSWeapon>(FirstWeaponClass);
+		Weapon->Attach(FPSCameraComponent, WeaponLocation);
+	}
+
 	GetCharacterMovement()->SetWalkableFloorAngle(60.f);
 }
 

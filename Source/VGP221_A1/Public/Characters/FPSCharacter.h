@@ -28,7 +28,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class AFPSWeapon> FirstWeaponClass;
-	AFPSWeapon* Weapon;
 
 	UPROPERTY(EditAnywhere)
 	FVector WeaponLocation = FVector(0.f, 100.f, -64.f);
@@ -50,4 +49,7 @@ public:
 
 	UFUNCTION()
 	void Interact();
+
+private:
+	AFPSWeapon* Weapon;
 };
