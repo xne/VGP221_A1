@@ -17,4 +17,5 @@ public:
 	TSubclassOf<class AFPSProjectile> ProjectileClass;
 
 	virtual void OnFire_Implementation() override;
+	virtual void OnZoom_Implementation(float Value) override;
 };

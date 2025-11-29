@@ -31,3 +31,7 @@ void AProjectileWeapon::OnFire_Implementation()
 	FVector FireDirection = FireRotation.Vector();
 	Projectile->Fire(FireDirection);
 }
+
+void AProjectileWeapon::OnZoom_Implementation(float Value)
+{
+}
