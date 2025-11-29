@@ -67,8 +67,8 @@ bool AGravityGun::Grab()
 	GrabDistance = FMath::Clamp(Result.Distance, MinDistance, MaxDistance);
 
 	FTransform Transform = GrabbedComponent->GetComponentTransform();
-	// Scale by the square root of 2 to circumscribe, rather than inscribe, the grabbed component
-	GrabRadius = GrabbedComponent->CalcBounds(Transform).SphereRadius * FMath::Sqrt(2.f);
+	// Scale by the square root of 3 to circumscribe the grabbed component
+	GrabRadius = GrabbedComponent->CalcBounds(Transform).SphereRadius * FMath::Sqrt(3.f);
 
 	if (!GrabbedComponent->IsSimulatingPhysics())
 		return false;
