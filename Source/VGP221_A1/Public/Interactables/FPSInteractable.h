@@ -12,9 +12,9 @@ class VGP221_A1_API AFPSInteractable : public AActor
 public:
 	AFPSInteractable();
 
-	UPROPERTY(VisibleDefaultsOnly, Category = "Interactable")
+	UPROPERTY(VisibleDefaultsOnly, Category = "FPS Interactable")
 	UStaticMeshComponent* InteractableMeshComponent;
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Interactable")
+	UFUNCTION(BlueprintNativeEvent, Category = "FPS Interactable")
 	void OnInteract();
 };

@@ -27,13 +27,13 @@ public:
 	UPROPERTY(VisibleDefaultsOnly)
 	UCameraComponent* FPSCameraComponent;
 
-	UPROPERTY(EditAnywhere, Category = "Character")
+	UPROPERTY(EditAnywhere, Category = "FPS Character")
 	TSubclassOf<class AFPSWeapon> FirstWeaponClass;
 
-	UPROPERTY(EditAnywhere, Category = "Character")
+	UPROPERTY(EditAnywhere, Category = "FPS Character")
 	FVector WeaponLocation = FVector(0.f, 100.f, -64.f);
 
-	UPROPERTY(EditAnywhere, Category = "Character")
+	UPROPERTY(EditAnywhere, Category = "FPS Character")
 	float InteractDistance = 200.f;
 
 	UFUNCTION()

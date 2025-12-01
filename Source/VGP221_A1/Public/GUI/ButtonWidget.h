@@ -17,6 +17,6 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button;
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Button")
+	UFUNCTION(BlueprintNativeEvent, Category = "Button Widget")
 	void OnClick();
 };

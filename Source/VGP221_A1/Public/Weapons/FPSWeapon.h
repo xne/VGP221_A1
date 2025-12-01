@@ -35,10 +35,10 @@ public:
 	UFUNCTION()
 	bool CanFire() const;
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Weapon")
+	UFUNCTION(BlueprintNativeEvent, Category = "FPS Weapon")
 	void OnFire();
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Weapon")
+	UFUNCTION(BlueprintNativeEvent, Category = "FPS Weapon")
 	void OnZoom(float Value);
 
 protected:
