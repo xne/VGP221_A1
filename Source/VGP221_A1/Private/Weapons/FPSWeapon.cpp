@@ -2,8 +2,6 @@
 
 AFPSWeapon::AFPSWeapon()
 {
-	PrimaryActorTick.bCanEverTick = true;
-
 	if (!WeaponMeshComponent)
 	{
 		WeaponMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WeaponMeshComponent"));
@@ -17,18 +15,6 @@ AFPSWeapon::AFPSWeapon()
 		WeaponMeshComponent->SetCollisionProfileName(TEXT("PhysicsActor"));
 		WeaponMeshComponent->SetSimulatePhysics(true);
 		RootComponent = WeaponMeshComponent;
-	}
-}
-
-void AFPSWeapon::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-	if (!WeaponMeshComponent->IsSimulatingPhysics())
-	{
-		FVector Start = GetActorLocation();
-		FVector End = Start + GetActorForwardVector() * 1000.f;
-		DrawDebugLine(GetWorld(), Start, End, FColor::Red);
 	}
 }
 

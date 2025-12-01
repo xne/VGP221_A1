@@ -2,6 +2,8 @@
 
 AGravityGun::AGravityGun()
 {
+	PrimaryActorTick.bCanEverTick = true;
+
 	if (!PhysicsHandleComponent)
 	{
 		PhysicsHandleComponent = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandleComponent"));

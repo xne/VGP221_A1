@@ -13,10 +13,6 @@ class VGP221_A1_API AFPSWeapon : public AActor
 public:
 	AFPSWeapon();
 
-protected:
-	virtual void Tick(float DeltaTime) override;
-
-public:
 	UPROPERTY(VisibleDefaultsOnly)
 	UStaticMeshComponent* WeaponMeshComponent;
 
