@@ -13,14 +13,21 @@ class VGP221_A1_API AFPSProjectile : public AActor
 public:
 	AFPSProjectile();
 
+protected:
+	void BeginPlay() override;
+
+public:
 	UPROPERTY(VisibleDefaultsOnly, Category = "FPS Projectile")
 	UStaticMeshComponent* ProjectileMeshComponent;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "FPS Projectile")
 	UProjectileMovementComponent* ProjectileMovementComponent;
 
-	float BulletSpeed = 2000;
 	UPROPERTY(EditAnywhere, Category = "FPS Projectile")
+	float ProjectileSpeed = 2000.f;
+
+	UPROPERTY(EditAnywhere, Category = "FPS Projectile")
+	float LifeSpan = 1.5f;
 
 	UFUNCTION()
 	void Fire(const FVector& Direction);
