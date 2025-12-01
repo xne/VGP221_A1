@@ -2,8 +2,6 @@
 
 AGravityGun::AGravityGun()
 {
-	PrimaryActorTick.bCanEverTick = true;
-
 	if (!PhysicsHandleComponent)
 	{
 		PhysicsHandleComponent = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandleComponent"));
@@ -33,10 +31,15 @@ void AGravityGun::Tick(float DeltaTime)
 
 void AGravityGun::OnFire_Implementation()
 {
+	if (!CanFire())
+		return;
+
 	if (bGrabActive)
 		Release();
 	else
 		Grab();
+
+	FireTime = FireRate;
 }
 
 void AGravityGun::OnZoom_Implementation(float Value)

@@ -21,6 +21,7 @@ public:
 
 protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void Tick(float DeltaTime) override;
 
 public:
 	UPROPERTY(VisibleDefaultsOnly)
@@ -42,7 +43,10 @@ public:
 	void MoveRight(float Value);
 
 	UFUNCTION()
-	void Fire();
+	void FirePressed();
+
+	UFUNCTION()
+	void FireReleased();
 
 	UFUNCTION()
 	void Zoom(float Value);
@@ -52,4 +56,5 @@ public:
 
 private:
 	AFPSWeapon* Weapon;
+	bool bFirePressed;
 };

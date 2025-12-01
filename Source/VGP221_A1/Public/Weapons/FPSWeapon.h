@@ -13,8 +13,18 @@ class VGP221_A1_API AFPSWeapon : public AActor
 public:
 	AFPSWeapon();
 
+protected:
+	virtual void Tick(float DeltaTime) override;
+
+public:
 	UPROPERTY(VisibleDefaultsOnly)
 	UStaticMeshComponent* WeaponMeshComponent;
+
+	UPROPERTY(EditAnywhere)
+	bool bAutomatic;
+
+	UPROPERTY(EditAnywhere)
+	float FireRate = 0.1f;
 
 	UFUNCTION()
 	void Attach(USceneComponent* Component, FVector RelativeLocation);
@@ -22,9 +32,15 @@ public:
 	UFUNCTION()
 	void Detach();
 
+	UFUNCTION()
+	bool CanFire() const;
+
 	UFUNCTION(BlueprintNativeEvent, Category = "Weapon")
 	void OnFire();
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Weapon")
 	void OnZoom(float Value);
+
+protected:
+	float FireTime;
 };

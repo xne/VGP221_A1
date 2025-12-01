@@ -2,6 +2,8 @@
 
 AFPSCharacter::AFPSCharacter()
 {
+	PrimaryActorTick.bCanEverTick = true;
+
 	if (!FPSCameraComponent)
 	{
 		FPSCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
@@ -31,10 +33,17 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AFPSCharacter::Jump);
 
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFPSCharacter::Fire);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFPSCharacter::FirePressed);
+	PlayerInputComponent->BindAction("Fire", IE_Released, this, &AFPSCharacter::FireReleased);
 	PlayerInputComponent->BindAxis("Zoom", this, &AFPSCharacter::Zoom);
 
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AFPSCharacter::Interact);
+}
+
+void AFPSCharacter::Tick(float DeltaTime)
+{
+	if (bFirePressed && Weapon && Weapon->bAutomatic)
+		Weapon->OnFire();
 }
 
 void AFPSCharacter::MoveForward(float Value)
@@ -49,10 +58,16 @@ void AFPSCharacter::MoveRight(float Value)
 	AddMovementInput(Direction, Value);
 }
 
-void AFPSCharacter::Fire()
+void AFPSCharacter::FirePressed()
 {
+	bFirePressed = true;
 	if (Weapon)
 		Weapon->OnFire();
+}
+
+void AFPSCharacter::FireReleased()
+{
+	bFirePressed = false;
 }
 
 void AFPSCharacter::Zoom(float Value)

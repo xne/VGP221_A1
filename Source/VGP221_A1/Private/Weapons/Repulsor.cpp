@@ -2,6 +2,9 @@
 
 void ARepulsor::OnFire_Implementation()
 {
+	if (!CanFire())
+		return;
+
 	TArray<FOverlapResult> OutOverlaps;
 	FVector Location = GetActorLocation();
 	FCollisionQueryParams QueryParams;
@@ -32,4 +35,6 @@ void ARepulsor::OnFire_Implementation()
 		FVector Impulse = (Range - Distance) * Strength * Direction;
 		Component->AddImpulseAtLocation(Impulse, ClosestPoint);
 	}
+
+	FireTime = FireRate;
 }

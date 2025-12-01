@@ -10,6 +10,9 @@ AProjectileWeapon::AProjectileWeapon()
 
 void AProjectileWeapon::OnFire_Implementation()
 {
+	if (!CanFire())
+		return;
+
 	if (!ProjectileClass)
 		return;
 
@@ -30,6 +33,8 @@ void AProjectileWeapon::OnFire_Implementation()
 
 	FVector FireDirection = FireRotation.Vector();
 	Projectile->Fire(FireDirection);
+
+	FireTime = FireRate;
 }
 
 void AProjectileWeapon::OnZoom_Implementation(float Value)
