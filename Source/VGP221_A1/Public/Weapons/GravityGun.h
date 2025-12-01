@@ -21,13 +21,13 @@ public:
 	UPROPERTY(VisibleDefaultsOnly)
 	UPhysicsHandleComponent* PhysicsHandleComponent;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Gravity Gun")
 	float MaxDistance = 1000.f;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Gravity Gun")
 	float MinDistance = 150.f;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Gravity Gun")
 	float ZoomSpeed = 10.f;
 
 	virtual void OnFire_Implementation() override;
@@ -36,28 +36,28 @@ public:
 	UFUNCTION()
 	bool Grab();
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Weapon")
+	UFUNCTION(BlueprintImplementableEvent, Category = "Gravity Gun")
 	void OnGrab();
 
 	UFUNCTION()
 	void Release();
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Weapon")
+	UFUNCTION(BlueprintImplementableEvent, Category = "Gravity Gun")
 	void OnRelease();
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = "Gravity Gun")
 	bool GetGrabActive() const;
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = "Gravity Gun")
 	UPrimitiveComponent* GetGrabbedComponent() const;
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = "Gravity Gun")
 	FVector GetGrabLocation() const;
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = "Gravity Gun")
 	float GetGrabDistance() const;
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = "Gravity Gun")
 	float GetGrabRadius() const;
 
 private:

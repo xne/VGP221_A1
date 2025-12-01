@@ -13,7 +13,7 @@ class VGP221_A1_API AProjectileWeapon : public AFPSWeapon
 public:
 	AProjectileWeapon();
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Projectile Weapon")
 	TSubclassOf<class AFPSProjectile> ProjectileClass;
 
 	virtual void OnFire_Implementation() override;

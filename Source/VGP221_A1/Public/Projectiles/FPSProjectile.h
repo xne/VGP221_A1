@@ -16,11 +16,11 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, Category = "Projectile")
 	UStaticMeshComponent* ProjectileMeshComponent;
 
-	UPROPERTY(EditAnywhere, Category = "Movement")
-	float BulletSpeed = 2000;
-
-	UPROPERTY(VisibleDefaultsOnly, Category = "Movement")
+	UPROPERTY(VisibleDefaultsOnly, Category = "Projectile")
 	UProjectileMovementComponent* ProjectileMovementComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Projectile")
+	float BulletSpeed = 2000;
 
 	UFUNCTION()
 	void Fire(const FVector& Direction);

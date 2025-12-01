@@ -11,10 +11,10 @@ class VGP221_A1_API ARepulsor : public AFPSWeapon
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Repulsor")
 	float Range = 1000.f;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Repulsor")
 	float Strength = 100.f;
 
 	virtual void OnFire_Implementation() override;

@@ -23,16 +23,16 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleDefaultsOnly)
 	UCameraComponent* FPSCameraComponent;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Character")
 	TSubclassOf<class AFPSWeapon> FirstWeaponClass;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Character")
 	FVector WeaponLocation = FVector(0.f, 100.f, -64.f);
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Character")
 	float InteractDistance = 200.f;
 
 	UFUNCTION()
