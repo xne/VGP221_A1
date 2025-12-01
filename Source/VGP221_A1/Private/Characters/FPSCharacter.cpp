@@ -48,13 +48,13 @@ void AFPSCharacter::Tick(float DeltaTime)
 
 void AFPSCharacter::MoveForward(float Value)
 {
-	FVector Direction = GetActorForwardVector();
+	auto Direction = GetActorForwardVector();
 	AddMovementInput(Direction, Value);
 }
 
 void AFPSCharacter::MoveRight(float Value)
 {
-	FVector Direction = GetActorRightVector();
+	auto Direction = GetActorRightVector();
 	AddMovementInput(Direction, Value);
 }
 
@@ -82,9 +82,9 @@ void AFPSCharacter::Interact()
 	FRotator CameraRotation;
 	GetActorEyesViewPoint(CameraLocation, CameraRotation);
 
-	FVector Direction = CameraRotation.Vector();
-	FVector Start = CameraLocation;
-	FVector End = Start + (Direction * InteractDistance);
+	auto Direction = CameraRotation.Vector();
+	auto Start = CameraLocation;
+	auto End = Start + (Direction * InteractDistance);
 
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.AddIgnoredActor(this);

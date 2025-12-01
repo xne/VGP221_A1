@@ -18,7 +18,7 @@ void AGravityGun::Tick(float DeltaTime)
 	if (!bGrabActive)
 		return;
 
-	FVector ComponentLocation = GrabbedComponent->GetComponentLocation();
+	auto ComponentLocation = GrabbedComponent->GetComponentLocation();
 	if (FVector::Dist(ComponentLocation, GrabLocation) > GrabRadius)
 	{
 		Release();
@@ -55,10 +55,10 @@ bool AGravityGun::Grab()
 	if (bGrabActive)
 		return false;
 
-	FVector Direction = GetActorRotation().Vector();
+	auto Direction = GetActorRotation().Vector();
 
-	FVector Start = GetActorLocation();
-	FVector End = Start + (Direction * MaxDistance);
+	auto Start = GetActorLocation();
+	auto End = Start + (Direction * MaxDistance);
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.AddIgnoredActor(this);
 	FHitResult Result;
@@ -71,7 +71,7 @@ bool AGravityGun::Grab()
 	GrabLocation = Result.ImpactPoint;
 	GrabDistance = FMath::Clamp(Result.Distance, MinDistance, MaxDistance);
 
-	FTransform Transform = GrabbedComponent->GetComponentTransform();
+	auto &Transform = GrabbedComponent->GetComponentTransform();
 	// Scale by the square root of 3 to circumscribe the grabbed component
 	GrabRadius = GrabbedComponent->CalcBounds(Transform).SphereRadius * FMath::Sqrt(3.f);
 

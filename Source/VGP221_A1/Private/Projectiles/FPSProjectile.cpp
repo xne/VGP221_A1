@@ -49,9 +49,9 @@ void AFPSProjectile::OnComponentHit(UPrimitiveComponent* HitComponent, AActor* O
 
 	if (OtherComponent->IsSimulatingPhysics())
 	{
-		FVector RelativeVelocity = GetVelocity() - OtherActor->GetVelocity();
-		float Mass = HitComponent->IsSimulatingPhysics() ? HitComponent->GetMass() : HitComponent->CalculateMass();
-		FVector Impulse = RelativeVelocity * Mass;
+		auto RelativeVelocity = GetVelocity() - OtherActor->GetVelocity();
+		auto Mass = HitComponent->IsSimulatingPhysics() ? HitComponent->GetMass() : HitComponent->CalculateMass();
+		auto Impulse = RelativeVelocity * Mass;
 		OtherComponent->AddImpulseAtLocation(Impulse, Hit.ImpactPoint);
 	}
 

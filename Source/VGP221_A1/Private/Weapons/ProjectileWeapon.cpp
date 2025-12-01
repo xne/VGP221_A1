@@ -20,18 +20,18 @@ void AProjectileWeapon::OnFire_Implementation()
 	if (!World)
 		return;
 
-	FVector FireLocation = GetActorLocation();
-	FRotator FireRotation = GetActorRotation();
+	auto FireLocation = GetActorLocation();
+	auto FireRotation = GetActorRotation();
 
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = GetInstigator();
 
-	AFPSProjectile* Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, FireLocation, FireRotation, SpawnParams);
+	auto Projectile = World->SpawnActor<AFPSProjectile>(ProjectileClass, FireLocation, FireRotation, SpawnParams);
 	if (!Projectile)
 		return;
 
-	FVector FireDirection = FireRotation.Vector();
+	auto FireDirection = FireRotation.Vector();
 	Projectile->Fire(FireDirection);
 
 	FireTime = FireRate;

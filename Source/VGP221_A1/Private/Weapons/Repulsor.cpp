@@ -6,7 +6,7 @@ void ARepulsor::OnFire_Implementation()
 		return;
 
 	TArray<FOverlapResult> OutOverlaps;
-	FVector Location = GetActorLocation();
+	auto Location = GetActorLocation();
 	FCollisionQueryParams QueryParams;
 
 	GetWorld()->OverlapMultiByObjectType(
@@ -20,7 +20,7 @@ void ARepulsor::OnFire_Implementation()
 
 	for (const FOverlapResult& Overlap : OutOverlaps)
 	{
-		UPrimitiveComponent* Component = Overlap.GetComponent();
+		auto Component = Overlap.GetComponent();
 		if (!Component)
 			continue;
 
@@ -28,11 +28,11 @@ void ARepulsor::OnFire_Implementation()
 		if (Component->GetClosestPointOnCollision(Location, ClosestPoint) <= 0.f)
 			continue;
 
-		FVector Difference = ClosestPoint - Location;
-		float Distance = Difference.Length();
-		FVector Direction = Difference.GetSafeNormal();
+		auto Difference = ClosestPoint - Location;
+		auto Distance = Difference.Length();
+		auto Direction = Difference.GetSafeNormal();
 
-		FVector Impulse = (Range - Distance) * Strength * Direction;
+		auto Impulse = (Range - Distance) * Strength * Direction;
 		Component->AddImpulseAtLocation(Impulse, ClosestPoint);
 	}
 
