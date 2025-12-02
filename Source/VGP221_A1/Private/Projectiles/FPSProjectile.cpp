@@ -21,20 +21,11 @@ AFPSProjectile::AFPSProjectile()
 		ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
 		ProjectileMovementComponent->SetUpdatedComponent(ProjectileMeshComponent);
 		ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
-	}
-}
-
-void AFPSProjectile::BeginPlay()
-{
-	Super::BeginPlay();
-
-	if (ProjectileMovementComponent)
-	{
-		ProjectileMovementComponent->InitialSpeed = ProjectileSpeed;
-		ProjectileMovementComponent->MaxSpeed = ProjectileSpeed;
+		ProjectileMovementComponent->InitialSpeed = 2000.f;
+		ProjectileMovementComponent->MaxSpeed = 2000.f;
 	}
 
-	InitialLifeSpan = LifeSpan;
+	InitialLifeSpan = 1.f;
 }
 
 void AFPSProjectile::Fire(const FVector& Direction)
