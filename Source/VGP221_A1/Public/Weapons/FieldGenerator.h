@@ -3,20 +3,20 @@
 #include "CoreMinimal.h"
 #include "Engine/OverlapResult.h"
 #include "Weapons/FPSWeapon.h"
-#include "Repulsor.generated.h"
+#include "FieldGenerator.generated.h"
 
 UCLASS()
-class VGP221_A1_API ARepulsor : public AFPSWeapon
+class VGP221_A1_API AFieldGenerator : public AFPSWeapon
 {
 	GENERATED_BODY()
 
 public:
-	ARepulsor();
+	AFieldGenerator();
 
-	UPROPERTY(EditAnywhere, Category = "Repulsor")
+	UPROPERTY(EditAnywhere, Category = "Field Generator")
 	float Range = 1000.f;
 
-	UPROPERTY(EditAnywhere, Category = "Repulsor")
+	UPROPERTY(EditAnywhere, Category = "Field Generator")
 	float Strength = 15.f;
 
 	virtual void OnFire_Implementation() override;

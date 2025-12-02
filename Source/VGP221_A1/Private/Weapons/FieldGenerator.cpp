@@ -1,11 +1,11 @@
-#include "Weapons/Repulsor.h"
+#include "Weapons/FieldGenerator.h"
 
-ARepulsor::ARepulsor()
+AFieldGenerator::AFieldGenerator()
 {
 	bAutomatic = true;
 }
 
-void ARepulsor::OnFire_Implementation()
+void AFieldGenerator::OnFire_Implementation()
 {
 	if (!CanFire())
 		return;
