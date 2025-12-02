@@ -25,13 +25,18 @@ void AGravityGun::Tick(float DeltaTime)
 		return;
 	}
 
-	FVector FireLocation;
-	FRotator FireRotation;
-	GetFireTransform(FireLocation, FireRotation);
+	auto Actor = GetAttachParentActor();
+	if (!Actor)
+		Actor = Cast<AActor>(this);
 
-	auto Direction = FireRotation.Vector();
-	GrabLocation = FireLocation + Direction * GrabDistance;
-	PhysicsHandleComponent->SetTargetLocationAndRotation(GrabLocation, GetActorRotation());
+	FVector Location;
+	FRotator Rotation;
+	Actor->GetActorEyesViewPoint(Location, Rotation);
+
+	auto Direction = Rotation.Vector();
+	GrabLocation = Location + Direction * GrabDistance;
+
+	PhysicsHandleComponent->SetTargetLocationAndRotation(GrabLocation, Rotation);
 }
 
 void AGravityGun::OnFire_Implementation()
@@ -60,19 +65,22 @@ bool AGravityGun::Grab()
 	if (bGrabActive)
 		return false;
 
-	FVector FireLocation;
-	FRotator FireRotation;
-	GetFireTransform(FireLocation, FireRotation);
+	auto Actor = GetAttachParentActor();
+	if (!Actor)
+		Actor = Cast<AActor>(this);
 
-	auto Direction = FireRotation.Vector();
-	auto Start = FireLocation;
-	auto End = Start + (Direction * MaxRange);
+	FVector Location;
+	FRotator Rotation;
+	Actor->GetActorEyesViewPoint(Location, Rotation);
+
+	auto Direction = Rotation.Vector();
+	auto End = Location + (Direction * MaxRange);
 
 	FCollisionQueryParams CollisionParams;
-	CollisionParams.AddIgnoredActor(this);
+	CollisionParams.AddIgnoredActor(Actor);
 
 	FHitResult Result;
-	auto bHit = GetWorld()->LineTraceSingleByChannel(Result, Start, End, ECC_Visibility, CollisionParams);
+	auto bHit = GetWorld()->LineTraceSingleByChannel(Result, Location, End, ECC_Visibility, CollisionParams);
 
 	if (!bHit)
 		return false;
@@ -88,7 +96,7 @@ bool AGravityGun::Grab()
 	if (!GrabbedComponent->IsSimulatingPhysics())
 		return false;
 
-	PhysicsHandleComponent->GrabComponentAtLocationWithRotation(GrabbedComponent, NAME_None, GrabLocation, GetActorRotation());
+	PhysicsHandleComponent->GrabComponentAtLocationWithRotation(GrabbedComponent, NAME_None, GrabLocation, Rotation);
 	bGrabActive = true;
 	OnGrab();
 	return true;

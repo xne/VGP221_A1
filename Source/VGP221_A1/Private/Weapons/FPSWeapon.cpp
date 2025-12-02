@@ -50,17 +50,13 @@ bool AFPSWeapon::CanFire() const
 
 void AFPSWeapon::GetFireTransform(FVector& Location, FRotator& Rotation) const
 {
-	auto Parent = GetAttachParentActor();
-	if (!Parent)
-	{
-		Location = GetActorLocation();
-		Rotation = GetActorRotation();
-		return;
-	}
+	const auto* Actor = GetAttachParentActor();
+	if (!Actor)
+		Actor = Cast<AActor>(this);
 
 	FVector CameraLocation;
 	FRotator CameraRotation;
-	Parent->GetActorEyesViewPoint(CameraLocation, CameraRotation);
+	Actor->GetActorEyesViewPoint(CameraLocation, CameraRotation);
 
 	auto Direction = CameraRotation.Vector();
 	auto Start = CameraLocation;
