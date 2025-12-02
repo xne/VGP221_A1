@@ -21,11 +21,17 @@ AFPSProjectile::AFPSProjectile()
 		ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
 		ProjectileMovementComponent->SetUpdatedComponent(ProjectileMeshComponent);
 		ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
-		ProjectileMovementComponent->InitialSpeed = 2000.f;
-		ProjectileMovementComponent->MaxSpeed = 2000.f;
 	}
+}
 
-	InitialLifeSpan = 1.f;
+void AFPSProjectile::BeginPlay()
+{
+	Super::BeginPlay();
+
+	ProjectileMovementComponent->InitialSpeed = Speed;
+	ProjectileMovementComponent->MaxSpeed = Speed;
+	
+	SetLifeSpan(MaxDistance / Speed);
 }
 
 void AFPSProjectile::Fire(const FVector& Direction)
@@ -41,7 +47,7 @@ void AFPSProjectile::OnComponentHit(UPrimitiveComponent* HitComponent, AActor* O
 	if (OtherComponent->IsSimulatingPhysics())
 	{
 		auto RelativeVelocity = GetVelocity() - OtherActor->GetVelocity();
-		auto Impulse = RelativeVelocity * ImpactForceMult;
+		auto Impulse = RelativeVelocity * ImpactForce;
 		OtherComponent->AddImpulseAtLocation(Impulse, Hit.ImpactPoint);
 	}
 
