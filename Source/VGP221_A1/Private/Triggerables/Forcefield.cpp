@@ -57,9 +57,13 @@ void AForcefield::Tick(float DeltaTime)
 
 	if (ForcefieldMaterial)
 	{
+		FLinearColor OutColor;
+		ForcefieldMaterial->GetVectorParameterValue(FName("Emissive Color"), OutColor);
+
 		// Apply exponential interpolation to counteract the non-linear behavior of Fresnel
-		auto Opacity = FMath::InterpExpoIn(0.f, 1.f, LinearOpacity);
-		ForcefieldMaterial->SetScalarParameterValue(FName("Opacity"), Opacity);
+		OutColor.A = FMath::InterpExpoIn(0.f, 1.f, LinearOpacity);
+
+		ForcefieldMaterial->SetVectorParameterValue(FName("Emissive Color"), OutColor);
 	}
 }
 
