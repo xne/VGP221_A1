@@ -19,6 +19,9 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, Category = "FPS Projectile")
 	UProjectileMovementComponent* ProjectileMovementComponent;
 
+	UPROPERTY(EditAnywhere)
+	float ImpactForceMult = 30.f;
+
 	UFUNCTION()
 	void Fire(const FVector& Direction);
 
