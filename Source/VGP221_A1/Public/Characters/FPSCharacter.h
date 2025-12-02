@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Interactables/FPSInteractable.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "Projectiles/FPSProjectile.h"
 #include "Weapons/FPSWeapon.h"
 #include "FPSCharacter.generated.h"
@@ -34,6 +35,9 @@ public:
 	FVector WeaponLocation = FVector(0.f, 100.f, -64.f);
 
 	UPROPERTY(EditAnywhere, Category = "FPS Character")
+	float FireDistance = 10000.f;
+
+	UPROPERTY(EditAnywhere, Category = "FPS Character")
 	float InteractDistance = 200.f;
 
 	UFUNCTION()
@@ -41,6 +45,9 @@ public:
 
 	UFUNCTION()
 	void MoveRight(float Value);
+
+	UFUNCTION()
+	void Fire();
 
 	UFUNCTION()
 	void FirePressed();

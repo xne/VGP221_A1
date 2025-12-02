@@ -30,11 +30,11 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Gravity Gun")
 	float ZoomSpeed = 10.f;
 
-	virtual void OnFire_Implementation() override;
+	virtual void OnFire_Implementation(FRotator FireRotation) override;
 	virtual void OnZoom_Implementation(float Value) override;
 
 	UFUNCTION()
-	bool Grab();
+	bool Grab(FVector Direction);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Gravity Gun")
 	void OnGrab();

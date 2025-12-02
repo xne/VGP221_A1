@@ -29,7 +29,7 @@ void AGravityGun::Tick(float DeltaTime)
 	PhysicsHandleComponent->SetTargetLocationAndRotation(GrabLocation, GetActorRotation());
 }
 
-void AGravityGun::OnFire_Implementation()
+void AGravityGun::OnFire_Implementation(FRotator FireRotation)
 {
 	if (!CanFire())
 		return;
@@ -37,7 +37,7 @@ void AGravityGun::OnFire_Implementation()
 	if (bGrabActive)
 		Release();
 	else
-		Grab();
+		Grab(FireRotation.Vector());
 
 	FireTime = FireRate;
 }
@@ -50,12 +50,10 @@ void AGravityGun::OnZoom_Implementation(float Value)
 	GrabDistance = FMath::Clamp(GrabDistance + Value * ZoomSpeed, MinRange, MaxRange);
 }
 
-bool AGravityGun::Grab()
+bool AGravityGun::Grab(FVector Direction)
 {
 	if (bGrabActive)
 		return false;
-
-	auto Direction = GetActorRotation().Vector();
 
 	auto Start = GetActorLocation();
 	auto End = Start + (Direction * MaxRange);

@@ -48,7 +48,7 @@ bool AFPSWeapon::CanFire() const
 	return FMath::IsNearlyZero(FireTime, KINDA_SMALL_NUMBER);
 }
 
-void AFPSWeapon::OnFire_Implementation()
+void AFPSWeapon::OnFire_Implementation(FRotator FireRotation)
 {
 	if (!CanFire())
 		return;

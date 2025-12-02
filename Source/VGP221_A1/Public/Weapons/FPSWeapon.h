@@ -36,7 +36,7 @@ public:
 	bool CanFire() const;
 
 	UFUNCTION(BlueprintNativeEvent, Category = "FPS Weapon")
-	void OnFire();
+	void OnFire(FRotator FireRotation);
 
 	UFUNCTION(BlueprintNativeEvent, Category = "FPS Weapon")
 	void OnZoom(float Value);

@@ -44,7 +44,7 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 void AFPSCharacter::Tick(float DeltaTime)
 {
 	if (bFirePressed && Weapon && Weapon->bAutomatic)
-		Weapon->OnFire();
+		Fire();
 }
 
 void AFPSCharacter::MoveForward(float Value)
@@ -59,11 +59,40 @@ void AFPSCharacter::MoveRight(float Value)
 	AddMovementInput(Direction, Value);
 }
 
+void AFPSCharacter::Fire()
+{
+	FVector CameraLocation;
+	FRotator CameraRotation;
+	GetActorEyesViewPoint(CameraLocation, CameraRotation);
+
+	auto Direction = CameraRotation.Vector();
+	auto Start = CameraLocation;
+	auto End = Start + (Direction * FireDistance);
+
+	FCollisionQueryParams CollisionParams;
+	CollisionParams.AddIgnoredActor(this);
+
+	FHitResult Result;
+	auto bHit = GetWorld()->LineTraceSingleByChannel(Result, Start, End, ECC_Visibility, CollisionParams);
+
+	auto FireLocation = Weapon->GetActorLocation();
+
+	FVector HitLocation;
+	if (bHit)
+		HitLocation = Result.ImpactPoint;
+	else
+		HitLocation = End;
+
+	auto FireRotation = UKismetMathLibrary::FindLookAtRotation(FireLocation, HitLocation);
+
+	Weapon->OnFire(FireRotation);
+}
+
 void AFPSCharacter::FirePressed()
 {
 	bFirePressed = true;
 	if (Weapon)
-		Weapon->OnFire();
+		Fire();
 }
 
 void AFPSCharacter::FireReleased()
