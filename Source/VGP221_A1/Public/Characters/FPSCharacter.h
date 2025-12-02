@@ -52,6 +52,9 @@ public:
 	void Zoom(float Value);
 
 	UFUNCTION()
+	void SwitchMode();
+
+	UFUNCTION()
 	void Interact();
 
 private:

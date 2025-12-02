@@ -41,6 +41,9 @@ public:
 	UFUNCTION(BlueprintNativeEvent, Category = "FPS Weapon")
 	void OnZoom(float Value);
 
+	UFUNCTION(BlueprintNativeEvent, Category = "FPS Weapon")
+	void OnSwitchMode();
+
 protected:
 	float FireTime;
 };

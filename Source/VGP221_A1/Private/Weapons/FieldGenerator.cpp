@@ -37,9 +37,20 @@ void AFieldGenerator::OnFire_Implementation()
 		auto Distance = Difference.Length();
 		auto Direction = Difference.GetSafeNormal();
 
+		if (FieldMode == EFieldMode::Attractor)
+			Direction = -Direction;
+
 		auto Impulse = (Range - Distance) * Strength * Direction;
 		Component->AddImpulseAtLocation(Impulse, ClosestPoint);
 	}
 
 	FireTime = FireRate;
+}
+
+void AFieldGenerator::OnSwitchMode_Implementation()
+{
+	if (FieldMode == EFieldMode::Attractor)
+		FieldMode = EFieldMode::Repeller;
+	else
+		FieldMode = EFieldMode::Attractor;
 }

@@ -62,3 +62,8 @@ void AFPSWeapon::OnZoom_Implementation(float Value)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "Zoom");
 }
+
+void AFPSWeapon::OnSwitchMode_Implementation()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "Switch mode");
+}

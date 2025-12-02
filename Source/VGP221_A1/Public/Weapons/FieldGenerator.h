@@ -5,6 +5,13 @@
 #include "Weapons/FPSWeapon.h"
 #include "FieldGenerator.generated.h"
 
+UENUM(BlueprintType)
+enum class EFieldMode : uint8
+{
+	Attractor,
+	Repeller
+};
+
 UCLASS()
 class VGP221_A1_API AFieldGenerator : public AFPSWeapon
 {
@@ -20,4 +27,8 @@ public:
 	float Strength = 15.f;
 
 	virtual void OnFire_Implementation() override;
+	virtual void OnSwitchMode_Implementation() override;
+
+protected:
+	EFieldMode FieldMode = EFieldMode::Attractor;
 };

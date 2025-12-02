@@ -36,6 +36,7 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFPSCharacter::FirePressed);
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &AFPSCharacter::FireReleased);
 	PlayerInputComponent->BindAxis("Zoom", this, &AFPSCharacter::Zoom);
+	PlayerInputComponent->BindAction("SwitchMode", IE_Pressed, this, &AFPSCharacter::SwitchMode);
 
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AFPSCharacter::Interact);
 }
@@ -74,6 +75,12 @@ void AFPSCharacter::Zoom(float Value)
 {
 	if (Weapon && !FMath::IsNearlyZero(Value, KINDA_SMALL_NUMBER))
 		Weapon->OnZoom(Value);
+}
+
+void AFPSCharacter::SwitchMode()
+{
+	if (Weapon)
+		Weapon->OnSwitchMode();
 }
 
 void AFPSCharacter::Interact()
