@@ -5,7 +5,7 @@ AFieldGenerator::AFieldGenerator()
 	bAutomatic = true;
 }
 
-void AFieldGenerator::OnFire_Implementation(FRotator FireRotation)
+void AFieldGenerator::OnFire_Implementation()
 {
 	if (!CanFire())
 		return;

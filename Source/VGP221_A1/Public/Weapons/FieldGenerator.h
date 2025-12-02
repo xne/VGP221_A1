@@ -32,7 +32,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Field Generator")
 	UMaterialInterface* RepellerMaterial;
 
-	virtual void OnFire_Implementation(FRotator FireRotation) override;
+	virtual void OnFire_Implementation() override;
 	virtual void OnSwitchMode_Implementation() override;
 
 protected:

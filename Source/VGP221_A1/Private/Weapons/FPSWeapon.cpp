@@ -48,7 +48,41 @@ bool AFPSWeapon::CanFire() const
 	return FMath::IsNearlyZero(FireTime, KINDA_SMALL_NUMBER);
 }
 
-void AFPSWeapon::OnFire_Implementation(FRotator FireRotation)
+void AFPSWeapon::GetFireTransform(FVector& Location, FRotator& Rotation) const
+{
+	auto Parent = GetAttachParentActor();
+	if (!Parent)
+	{
+		Location = GetActorLocation();
+		Rotation = GetActorRotation();
+		return;
+	}
+
+	FVector CameraLocation;
+	FRotator CameraRotation;
+	Parent->GetActorEyesViewPoint(CameraLocation, CameraRotation);
+
+	auto Direction = CameraRotation.Vector();
+	auto Start = CameraLocation;
+	auto End = Start + (Direction * TraceLength);
+
+	FCollisionQueryParams CollisionParams;
+	CollisionParams.AddIgnoredActor(this);
+
+	FHitResult Result;
+	auto bHit = GetWorld()->LineTraceSingleByChannel(Result, Start, End, ECC_Visibility, CollisionParams);
+
+	FVector HitLocation;
+	if (bHit)
+		HitLocation = Result.ImpactPoint;
+	else
+		HitLocation = End;
+
+	Location = GetActorLocation();
+	Rotation = UKismetMathLibrary::FindLookAtRotation(Location, HitLocation);
+}
+
+void AFPSWeapon::OnFire_Implementation()
 {
 	if (!CanFire())
 		return;

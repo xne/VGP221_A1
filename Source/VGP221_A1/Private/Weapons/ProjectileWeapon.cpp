@@ -11,7 +11,7 @@ AProjectileWeapon::AProjectileWeapon()
 	FireRate = 0.2f;
 }
 
-void AProjectileWeapon::OnFire_Implementation(FRotator FireRotation)
+void AProjectileWeapon::OnFire_Implementation()
 {
 	if (!CanFire())
 		return;
@@ -23,7 +23,9 @@ void AProjectileWeapon::OnFire_Implementation(FRotator FireRotation)
 	if (!World)
 		return;
 
-	auto FireLocation = GetActorLocation();
+	FVector FireLocation;
+	FRotator FireRotation;
+	GetFireTransform(FireLocation, FireRotation);
 
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Owner = this;

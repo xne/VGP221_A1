@@ -16,6 +16,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Projectile Weapon")
 	TSubclassOf<class AFPSProjectile> ProjectileClass;
 
-	virtual void OnFire_Implementation(FRotator FireRotation) override;
+	virtual void OnFire_Implementation() override;
 	virtual void OnZoom_Implementation(float Value) override;
 };

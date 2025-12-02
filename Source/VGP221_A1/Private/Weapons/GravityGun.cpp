@@ -25,11 +25,16 @@ void AGravityGun::Tick(float DeltaTime)
 		return;
 	}
 
-	GrabLocation = GetActorLocation() + GetActorForwardVector() * GrabDistance;
+	FVector FireLocation;
+	FRotator FireRotation;
+	GetFireTransform(FireLocation, FireRotation);
+
+	auto Direction = FireRotation.Vector();
+	GrabLocation = FireLocation + Direction * GrabDistance;
 	PhysicsHandleComponent->SetTargetLocationAndRotation(GrabLocation, GetActorRotation());
 }
 
-void AGravityGun::OnFire_Implementation(FRotator FireRotation)
+void AGravityGun::OnFire_Implementation()
 {
 	if (!CanFire())
 		return;
@@ -37,7 +42,7 @@ void AGravityGun::OnFire_Implementation(FRotator FireRotation)
 	if (bGrabActive)
 		Release();
 	else
-		Grab(FireRotation.Vector());
+		Grab();
 
 	FireTime = FireRate;
 }
@@ -50,15 +55,22 @@ void AGravityGun::OnZoom_Implementation(float Value)
 	GrabDistance = FMath::Clamp(GrabDistance + Value * ZoomSpeed, MinRange, MaxRange);
 }
 
-bool AGravityGun::Grab(FVector Direction)
+bool AGravityGun::Grab()
 {
 	if (bGrabActive)
 		return false;
 
-	auto Start = GetActorLocation();
+	FVector FireLocation;
+	FRotator FireRotation;
+	GetFireTransform(FireLocation, FireRotation);
+
+	auto Direction = FireRotation.Vector();
+	auto Start = FireLocation;
 	auto End = Start + (Direction * MaxRange);
+
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.AddIgnoredActor(this);
+
 	FHitResult Result;
 	auto bHit = GetWorld()->LineTraceSingleByChannel(Result, Start, End, ECC_Visibility, CollisionParams);
 

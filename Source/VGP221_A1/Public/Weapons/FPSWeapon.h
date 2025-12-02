@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Actor.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "FPSWeapon.generated.h"
 
 UCLASS()
@@ -26,6 +27,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	float FireRate = 0.1f;
 
+	UPROPERTY(EditAnywhere)
+	float TraceLength = 10000.f;
+
 	UFUNCTION()
 	void Attach(USceneComponent* Component, FVector RelativeLocation);
 
@@ -35,8 +39,11 @@ public:
 	UFUNCTION()
 	bool CanFire() const;
 
+	UFUNCTION(BlueprintPure, Category = "FPS Weapon")
+	void GetFireTransform(FVector& Location, FRotator& Rotation) const;
+
 	UFUNCTION(BlueprintNativeEvent, Category = "FPS Weapon")
-	void OnFire(FRotator FireRotation);
+	void OnFire();
 
 	UFUNCTION(BlueprintNativeEvent, Category = "FPS Weapon")
 	void OnZoom(float Value);
