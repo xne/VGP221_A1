@@ -1,5 +1,10 @@
 #include "Weapons/Repulsor.h"
 
+ARepulsor::ARepulsor()
+{
+	bAutomatic = true;
+}
+
 void ARepulsor::OnFire_Implementation()
 {
 	if (!CanFire())

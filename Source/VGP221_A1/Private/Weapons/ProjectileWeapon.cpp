@@ -6,6 +6,9 @@ AProjectileWeapon::AProjectileWeapon()
 	{
 		ProjectileClass = AFPSProjectile::StaticClass();
 	}
+
+	bAutomatic = true;
+	FireRate = 0.2f;
 }
 
 void AProjectileWeapon::OnFire_Implementation()
