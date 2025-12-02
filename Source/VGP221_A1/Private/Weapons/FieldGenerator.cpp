@@ -10,8 +10,14 @@ void AFieldGenerator::OnFire_Implementation()
 	if (!CanFire())
 		return;
 
+	FVector Location;
+	auto Parent = GetAttachParentActor();
+	if (Parent)
+		Location = Parent->GetActorLocation();
+	else
+		Location = GetActorLocation();
+
 	TArray<FOverlapResult> OutOverlaps;
-	auto Location = GetActorLocation();
 	FCollisionQueryParams QueryParams;
 
 	GetWorld()->OverlapMultiByObjectType(
