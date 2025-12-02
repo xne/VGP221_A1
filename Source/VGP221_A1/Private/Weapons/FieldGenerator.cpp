@@ -49,8 +49,18 @@ void AFieldGenerator::OnFire_Implementation()
 
 void AFieldGenerator::OnSwitchMode_Implementation()
 {
-	if (FieldMode == EFieldMode::Attractor)
+	switch (FieldMode)
+	{
+	case EFieldMode::Attractor:
 		FieldMode = EFieldMode::Repeller;
-	else
+		if (RepellerMaterial)
+			WeaponMeshComponent->SetMaterial(0, RepellerMaterial);
+		break;
+
+	case EFieldMode::Repeller:
 		FieldMode = EFieldMode::Attractor;
+		if (AttractorMaterial)
+			WeaponMeshComponent->SetMaterial(0, AttractorMaterial);
+		break;
+	}
 }

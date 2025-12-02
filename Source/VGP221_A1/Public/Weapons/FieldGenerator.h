@@ -26,6 +26,12 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Field Generator")
 	float Strength = 15.f;
 
+	UPROPERTY(EditAnywhere, Category = "Field Generator")
+	UMaterialInterface* AttractorMaterial;
+
+	UPROPERTY(EditAnywhere, Category = "Field Generator")
+	UMaterialInterface* RepellerMaterial;
+
 	virtual void OnFire_Implementation() override;
 	virtual void OnSwitchMode_Implementation() override;
 
