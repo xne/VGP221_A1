@@ -47,7 +47,7 @@ void AGravityGun::OnZoom_Implementation(float Value)
 	if (!bGrabActive)
 		return;
 	
-	GrabDistance = FMath::Clamp(GrabDistance + Value * ZoomSpeed, MinDistance, MaxDistance);
+	GrabDistance = FMath::Clamp(GrabDistance + Value * ZoomSpeed, MinRange, MaxRange);
 }
 
 bool AGravityGun::Grab()
@@ -58,7 +58,7 @@ bool AGravityGun::Grab()
 	auto Direction = GetActorRotation().Vector();
 
 	auto Start = GetActorLocation();
-	auto End = Start + (Direction * MaxDistance);
+	auto End = Start + (Direction * MaxRange);
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.AddIgnoredActor(this);
 	FHitResult Result;
@@ -69,7 +69,7 @@ bool AGravityGun::Grab()
 
 	GrabbedComponent = Result.GetComponent();
 	GrabLocation = Result.ImpactPoint;
-	GrabDistance = FMath::Clamp(Result.Distance, MinDistance, MaxDistance);
+	GrabDistance = FMath::Clamp(Result.Distance, MinRange, MaxRange);
 
 	auto &Transform = GrabbedComponent->GetComponentTransform();
 	// Scale by the square root of 3 to circumscribe the grabbed component

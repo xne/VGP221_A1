@@ -22,10 +22,10 @@ public:
 	UPhysicsHandleComponent* PhysicsHandleComponent;
 
 	UPROPERTY(EditAnywhere, Category = "Gravity Gun")
-	float MaxDistance = 1000.f;
+	float MinRange = 150.f;
 
 	UPROPERTY(EditAnywhere, Category = "Gravity Gun")
-	float MinDistance = 150.f;
+	float MaxRange = 1000.f;
 
 	UPROPERTY(EditAnywhere, Category = "Gravity Gun")
 	float ZoomSpeed = 10.f;
