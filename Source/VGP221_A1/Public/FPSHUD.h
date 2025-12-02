@@ -15,8 +15,10 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UGameMenuWidget> FirstGameMenuClass = UGameMenuWidget::StaticClass();
-	UGameMenuWidget* GameMenuWidget;
 
 	void PushGameMenu(TSubclassOf<UGameMenuWidget> GameMenuClass);
 	void PopGameMenu();
+
+private:
+	UGameMenuWidget* GameMenuWidget;
 };

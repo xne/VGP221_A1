@@ -15,8 +15,10 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UMainMenuWidget> FirstMainMenuClass = UMainMenuWidget::StaticClass();
-	UMainMenuWidget* MainMenuWidget;
 
 	void PushMainMenu(TSubclassOf<UMainMenuWidget> MainMenuClass);
 	void PopMainMenu();
+
+private:
+	UMainMenuWidget* MainMenuWidget;
 };
