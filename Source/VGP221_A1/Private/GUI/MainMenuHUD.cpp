@@ -5,13 +5,19 @@ void AMainMenuHUD::BeginPlay()
 	Super::BeginPlay();
 
 	auto GameInstance = GetGameInstance<UFPSGameInstance>();
-	if (GameInstance->bGameOver)
+	if (GameInstance)
 	{
-		GameInstance->bGameOver = false;
+		if (GameInstance->bGameOver)
+		{
+			GameInstance->bGameOver = false;
 
-		if (GameOverClass)
-			PushMenu(GameOverClass);
+			if (GameOverClass)
+				PushMenu(GameOverClass);
+
+			return;
+		}
 	}
-	else if (MainMenuClass)
+	
+	if (MainMenuClass)
 		PushMenu(MainMenuClass);
 }
