@@ -2,5 +2,5 @@
 
 void UPlayButtonWidget::OnClick_Implementation()
 {
-	UGameplayStatics::OpenLevel(this, FName("/Game/Maps/World"));
+	UGameplayStatics::OpenLevel(this, Levels::World);
 }

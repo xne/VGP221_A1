@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GUI/ButtonWidget.h"
 #include "Kismet/GameplayStatics.h"
+#include "Paths.h"
 #include "PlayButtonWidget.generated.h"
 
 UCLASS()
