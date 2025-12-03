@@ -4,20 +4,14 @@ void AMainMenuHUD::BeginPlay()
 {
 	Super::BeginPlay();
 
-	PushMainMenu(FirstMainMenuClass);
-}
-
-void AMainMenuHUD::PushMainMenu(TSubclassOf<UMainMenuWidget> MainMenuClass)
-{
-	MainMenuWidget = CreateWidget<UMainMenuWidget>(GetWorld(), MainMenuClass);
-	MainMenuWidget->AddToViewport();
-}
-
-void AMainMenuHUD::PopMainMenu()
-{
-	if (MainMenuWidget)
+	auto GameInstance = GetGameInstance<UFPSGameInstance>();
+	if (GameInstance->bGameOver)
 	{
-		MainMenuWidget->RemoveFromParent();
-		MainMenuWidget = nullptr;
+		GameInstance->bGameOver = false;
+
+		if (GameOverClass)
+			PushMenu(GameOverClass);
 	}
+	else if (MainMenuClass)
+		PushMenu(MainMenuClass);
 }

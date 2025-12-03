@@ -1,13 +1,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
+#include "GUI/MenuWidget.h"
 #include "GameMenuWidget.generated.h"
 
 UCLASS()
-class VGP221_A1_API UGameMenuWidget : public UUserWidget
+class VGP221_A1_API UGameMenuWidget : public UMenuWidget
 {
 	GENERATED_BODY()
 

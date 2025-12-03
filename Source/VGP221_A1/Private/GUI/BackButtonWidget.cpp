@@ -2,11 +2,11 @@
 
 void UBackButtonWidget::OnClick_Implementation()
 {
-	auto MainMenuHUD = GetOwningPlayer()->GetHUD<AMainMenuHUD>();;
+	auto HUD = GetOwningPlayer()->GetHUD<AFPSHUD>();;
 
-	if (MainMenuHUD)
+	if (HUD)
 	{
-		MainMenuHUD->PopMainMenu();
-		MainMenuHUD->PushMainMenu(LastMainMenuClass);
+		HUD->PopMenu();
+		HUD->PushMenu(MenuClass);
 	}
 }

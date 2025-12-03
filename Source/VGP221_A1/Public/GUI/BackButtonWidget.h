@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GUI/ButtonWidget.h"
-#include "MainMenuHUD.h"
+#include "FPSHUD.h"
 #include "BackButtonWidget.generated.h"
 
 UCLASS()
@@ -14,5 +14,5 @@ public:
 	virtual void OnClick_Implementation() override;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UMainMenuWidget> LastMainMenuClass = UMainMenuWidget::StaticClass();
+	TSubclassOf<UMenuWidget> MenuClass = UMenuWidget::StaticClass();
 };

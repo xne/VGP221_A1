@@ -1,23 +1,16 @@
 #include "GUI/FPSHUD.h"
 
-void AFPSHUD::BeginPlay()
+void AFPSHUD::PushMenu(TSubclassOf<UMenuWidget> GameMenuClass)
 {
-	Super::BeginPlay();
-
-	PushGameMenu(FirstGameMenuClass);
+	MenuWidget = CreateWidget<UMenuWidget>(GetWorld(), GameMenuClass);
+	MenuWidget->AddToViewport();
 }
 
-void AFPSHUD::PushGameMenu(TSubclassOf<UGameMenuWidget> GameMenuClass)
+void AFPSHUD::PopMenu()
 {
-	GameMenuWidget = CreateWidget<UGameMenuWidget>(GetWorld(), GameMenuClass);
-	GameMenuWidget->AddToViewport();
-}
-
-void AFPSHUD::PopGameMenu()
-{
-	if (GameMenuWidget)
+	if (MenuWidget)
 	{
-		GameMenuWidget->RemoveFromParent();
-		GameMenuWidget = nullptr;
+		MenuWidget->RemoveFromParent();
+		MenuWidget = nullptr;
 	}
 }

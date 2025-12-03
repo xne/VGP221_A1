@@ -1,12 +1,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/HUD.h"
-#include "GUI/MainMenuWidget.h"
+#include "FPSGameInstance.h"
+#include "GUI/FPSHUD.h"
+#include "GUI/MenuWidget.h"
 #include "MainMenuHUD.generated.h"
 
 UCLASS()
-class VGP221_A1_API AMainMenuHUD : public AHUD
+class VGP221_A1_API AMainMenuHUD : public AFPSHUD
 {
 	GENERATED_BODY()
 
@@ -14,11 +15,8 @@ public:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UMainMenuWidget> FirstMainMenuClass = UMainMenuWidget::StaticClass();
+	TSubclassOf<UMenuWidget> MainMenuClass = UMenuWidget::StaticClass();
 
-	void PushMainMenu(TSubclassOf<UMainMenuWidget> MainMenuClass);
-	void PopMainMenu();
-
-private:
-	UMainMenuWidget* MainMenuWidget;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UMenuWidget> GameOverClass;
 };
