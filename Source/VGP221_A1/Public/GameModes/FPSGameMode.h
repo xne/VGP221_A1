@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Characters/FPSCharacter.h"
-#include "FPSHUD.h"
+#include "GUI/FPSHUD.h"
 #include "GameFramework/GameModeBase.h"
 #include "FPSGameMode.generated.h"
 

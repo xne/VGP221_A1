@@ -1,4 +1,4 @@
-#include "FPSHUD.h"
+#include "GUI/FPSHUD.h"
 
 void AFPSHUD::BeginPlay()
 {

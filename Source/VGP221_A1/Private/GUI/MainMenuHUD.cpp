@@ -1,4 +1,4 @@
-#include "MainMenuHUD.h"
+#include "GUI/MainMenuHUD.h"
 
 void AMainMenuHUD::BeginPlay()
 {
