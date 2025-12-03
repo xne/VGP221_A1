@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Controllers/MenuController.h"
 #include "GUI/MainMenuHUD.h"
 #include "GameFramework/GameModeBase.h"
 #include "MainMenuGameMode.generated.h"

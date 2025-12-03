@@ -5,6 +5,7 @@ AFPSGameMode::AFPSGameMode()
 	GameStateClass = AFPSGameState::StaticClass();
 	HUDClass = AFPSHUD::StaticClass();
 	DefaultPawnClass = AFPSCharacter::StaticClass();
+	PlayerControllerClass = AFPSPlayerController::StaticClass();
 }
 
 void AFPSGameMode::StartPlay()
