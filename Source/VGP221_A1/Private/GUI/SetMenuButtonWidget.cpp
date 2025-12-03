@@ -1,6 +1,6 @@
-#include "GUI/BackButtonWidget.h"
+#include "GUI/SetMenuButtonWidget.h"
 
-void UBackButtonWidget::OnClick_Implementation()
+void USetMenuButtonWidget::OnClick_Implementation()
 {
 	auto HUD = GetOwningPlayer()->GetHUD<AFPSHUD>();;
 

@@ -3,10 +3,10 @@
 #include "CoreMinimal.h"
 #include "GUI/ButtonWidget.h"
 #include "FPSHUD.h"
-#include "BackButtonWidget.generated.h"
+#include "SetMenuButtonWidget.generated.h"
 
 UCLASS()
-class VGP221_A1_API UBackButtonWidget : public UButtonWidget
+class VGP221_A1_API USetMenuButtonWidget : public UButtonWidget
 {
 	GENERATED_BODY()
 
