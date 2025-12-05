@@ -25,18 +25,18 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis("MoveForward", this, &AFPSCharacter::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &AFPSCharacter::MoveRight);
+	PlayerInputComponent->BindAxis("Move Forward", this, &AFPSCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("Move Right", this, &AFPSCharacter::MoveRight);
 
-	PlayerInputComponent->BindAxis("LookHorizontal", this, &AFPSCharacter::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("LookVertical", this, &AFPSCharacter::AddControllerPitchInput);
+	PlayerInputComponent->BindAxis("Look Horizontal", this, &AFPSCharacter::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("Look Vertical", this, &AFPSCharacter::AddControllerPitchInput);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AFPSCharacter::Jump);
 
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFPSCharacter::FirePressed);
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &AFPSCharacter::FireReleased);
 	PlayerInputComponent->BindAxis("Zoom", this, &AFPSCharacter::Zoom);
-	PlayerInputComponent->BindAction("SwitchMode", IE_Pressed, this, &AFPSCharacter::SwitchMode);
+	PlayerInputComponent->BindAction("Switch Mode", IE_Pressed, this, &AFPSCharacter::SwitchMode);
 
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AFPSCharacter::Interact);
 }
