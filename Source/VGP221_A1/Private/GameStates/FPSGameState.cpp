@@ -9,12 +9,15 @@ void AFPSGameState::CompleteTask()
 {
 	TasksComplete++;
 
-	if (TasksComplete == Tasks)
-	{
-		auto GameInstance = GetGameInstance<UFPSGameInstance>();
-		if (GameInstance)
-			GameInstance->bGameOver = true;
+	OnTaskComplete.Broadcast();
+}
 
-		UGameplayStatics::OpenLevel(this, Levels::Menu);
-	}
+int AFPSGameState::GetTasks() const
+{
+	return Tasks;
+}
+
+int AFPSGameState::GetTasksComplete() const
+{
+	return TasksComplete;
 }
