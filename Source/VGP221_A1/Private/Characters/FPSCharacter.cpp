@@ -116,4 +116,7 @@ void AFPSCharacter::Interact()
 		Weapon = FPSWeapon;
 		Weapon->Attach(FPSCameraComponent, WeaponLocation);
 	}
+
+	if (auto FPSVehicle = Cast<AFPSVehicle>(Result.GetActor()))
+		Controller->Possess(FPSVehicle);
 }
