@@ -37,13 +37,13 @@ public:
 	UPhysicsThrusterComponent* ThrusterRollPositiveComponent;
 
 	UPROPERTY(EditAnywhere)
-	float ThrusterUpStrength = 400000.f;
+	float ThrusterUpStrength = 2000000.f;
 
 	UPROPERTY(EditAnywhere)
-	float ThrusterPitchStrength = 100000.f;
+	float ThrusterPitchStrength = 500000.f;
 
 	UPROPERTY(EditAnywhere)
-	float ThrusterRollStrength = 100000.f;
+	float ThrusterRollStrength = 500000.f;
 
 	UFUNCTION()
 	void Pitch(float Value);
