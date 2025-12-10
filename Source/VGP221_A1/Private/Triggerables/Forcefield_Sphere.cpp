@@ -1,9 +1,5 @@
 #include "Triggerables/Forcefield_Sphere.h"
 
-AForcefield_Sphere::AForcefield_Sphere()
-{
-}
-
 void AForcefield_Sphere::BeginPlay()
 {
 	Super::BeginPlay();

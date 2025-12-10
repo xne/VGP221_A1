@@ -10,9 +10,6 @@ class VGP221_A1_API AForcefield_Sphere : public AForcefield
 {
 	GENERATED_BODY()
 
-public:
-	AForcefield_Sphere();
-
 protected:
 	virtual void BeginPlay() override;
 
