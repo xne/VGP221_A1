@@ -5,8 +5,8 @@ void UGameMenuWidget::NativeConstruct()
 	Super::NativeConstruct();
 
 	UpdateHealthBar(1.f);
-	UpdateTimeText(90.f);
 	UpdateScoreText(0.f);
+	UpdateTimeText(90);
 }
 
 void UGameMenuWidget::UpdateHealthBar(float HealthPercent)
