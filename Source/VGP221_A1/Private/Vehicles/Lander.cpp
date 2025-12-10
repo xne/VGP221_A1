@@ -86,6 +86,15 @@ void ALander::Tick(float DeltaTime)
 
 	ThrusterRollPositiveComponent->ThrustStrength = FMath::Max(0.f, ControlSpaceInput.Y) * ThrusterRollStrength;
 	ThrusterRollNegativeComponent->ThrustStrength = FMath::Abs(FMath::Min(0.f, ControlSpaceInput.Y)) * ThrusterRollStrength;
+
+	if (GetActorLocation().Z > 10000.f)
+	{
+		auto GameInstance = GetGameInstance<UFPSGameInstance>();
+		if (GameInstance)
+			GameInstance->bGameOver = true;
+
+		UGameplayStatics::OpenLevel(this, Levels::Menu);
+	}
 }
 
 void ALander::Pitch(float Value)

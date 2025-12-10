@@ -1,6 +1,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "FPSGameInstance.h"
+#include "Kismet/GameplayStatics.h"
+#include "Paths.h"
 #include "PhysicsEngine/PhysicsThrusterComponent.h"
 #include "Vehicles/FPSVehicle.h"
 #include "Lander.generated.h"
