@@ -3,6 +3,8 @@
 void AFPSGameState::RegisterTask()
 {
 	Tasks++;
+
+	OnTaskRegister.Broadcast();
 }
 
 void AFPSGameState::CompleteTask()
