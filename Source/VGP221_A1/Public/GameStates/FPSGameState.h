@@ -1,10 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "FPSGameInstance.h"
 #include "GameFramework/GameStateBase.h"
-#include "Kismet/GameplayStatics.h"
-#include "Paths.h"
 #include "FPSGameState.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTaskComplete);
