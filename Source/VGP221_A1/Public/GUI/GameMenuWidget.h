@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
+#include "GameStates/FPSGameState.h"
 #include "GUI/MenuWidget.h"
 #include "GameMenuWidget.generated.h"
 
@@ -30,5 +31,11 @@ public:
 	void UpdateTimeText(int Time);
 
 	UFUNCTION()
-	void UpdateScoreText(int Score);
+	void UpdateScoreText(int Tasks, int TasksComplete);
+
+	UFUNCTION()
+	void OnGameStateTaskRegister();
+
+	UFUNCTION()
+	void OnGameStateTaskComplete();
 };
