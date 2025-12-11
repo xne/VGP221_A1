@@ -22,7 +22,7 @@ public:
 	UTextBlock* TimeText;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* ScoreText;
+	UTextBlock* TasksText;
 
 	UFUNCTION()
 	void UpdateHealthBar(float HealthPercent);
@@ -31,7 +31,7 @@ public:
 	void UpdateTimeText(int Time);
 
 	UFUNCTION()
-	void UpdateScoreText(int Tasks, int TasksComplete);
+	void UpdateTasksText(int Tasks, int TasksComplete);
 
 	UFUNCTION()
 	void OnGameStateTaskRegister();

@@ -6,6 +6,7 @@ void UGameMenuWidget::NativeConstruct()
 
 	UpdateHealthBar(1.f);
 	UpdateTimeText(90);
+	UpdateTasksText(0, 1);
 
 	auto GameState = GetWorld()->GetGameState<AFPSGameState>();
 	if (GameState)
@@ -31,24 +32,24 @@ void UGameMenuWidget::UpdateTimeText(int Time)
 	TimeText->SetText(FText::FromString(FString::Printf(TEXT("Time: %.2d:%.2d"), Time / 60, Time % 60)));
 }
 
-void UGameMenuWidget::UpdateScoreText(int Tasks, int TasksComplete)
+void UGameMenuWidget::UpdateTasksText(int Tasks, int TasksComplete)
 {
-	if (!ScoreText)
+	if (!TasksText)
 		return;
 
-	ScoreText->SetText(FText::FromString(FString::Printf(TEXT("Tasks: %d/%d"), TasksComplete, Tasks)));
+	TasksText->SetText(FText::FromString(FString::Printf(TEXT("Tasks: %d/%d"), TasksComplete, Tasks)));
 }
 
 void UGameMenuWidget::OnGameStateTaskRegister()
 {
 	auto GameState = GetWorld()->GetGameState<AFPSGameState>();
 	if (GameState)
-		UpdateScoreText(GameState->GetTasks(), GameState->GetTasksComplete());
+		UpdateTasksText(GameState->GetTasks(), GameState->GetTasksComplete());
 }
 
 void UGameMenuWidget::OnGameStateTaskComplete()
 {
 	auto GameState = GetWorld()->GetGameState<AFPSGameState>();
 	if (GameState)
-		UpdateScoreText(GameState->GetTasks(), GameState->GetTasksComplete());
+		UpdateTasksText(GameState->GetTasks(), GameState->GetTasksComplete());
 }
