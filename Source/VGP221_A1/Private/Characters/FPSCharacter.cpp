@@ -16,6 +16,7 @@ AFPSCharacter::AFPSCharacter()
 	{
 		Weapon = GetWorld()->SpawnActor<AFPSWeapon>(FirstWeaponClass);
 		Weapon->Attach(FPSCameraComponent, WeaponLocation);
+		Weapon->SetActorRelativeRotation(WeaponRotation);
 	}
 
 	GetCharacterMovement()->SetWalkableFloorAngle(60.f);
@@ -115,6 +116,7 @@ void AFPSCharacter::Interact()
 
 		Weapon = FPSWeapon;
 		Weapon->Attach(FPSCameraComponent, WeaponLocation);
+		Weapon->SetActorRelativeRotation(WeaponRotation);
 	}
 
 	if (auto FPSVehicle = Cast<AFPSVehicle>(Result.GetActor()))

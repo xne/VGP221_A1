@@ -32,7 +32,10 @@ public:
 	TSubclassOf<class AFPSWeapon> FirstWeaponClass;
 
 	UPROPERTY(EditAnywhere, Category = "FPS Character")
-	FVector WeaponLocation = FVector(0.f, 100.f, -64.f);
+	FVector WeaponLocation = FVector(34.f, 34.f, -16.f);
+
+	UPROPERTY(EditAnywhere, Category = "FPS Character")
+	FRotator WeaponRotation = FRotator(0.f, 90.f, 0.f);
 
 	UPROPERTY(EditAnywhere, Category = "FPS Character")
 	float InteractDistance = 200.f;
